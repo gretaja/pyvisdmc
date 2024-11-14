@@ -8,7 +8,7 @@ __pycache__/
 *.csv
 
 #DMC data files
-*.hdf5
+#*.hdf5
 
 # C extensions
 *.so
