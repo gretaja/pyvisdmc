@@ -1,6 +1,19 @@
 # Defining components for the project
 
-## Data Loader
+## Data source (PyVibDMC output file)
+### What it does
+Provides a set of data to analyze.
+
+### Inputs
+n/a (we assume the data file we want to analyze already exists on the user's computer
+
+### Outputs
+hdf5 file for analysis
+
+### Talks to
+Data loader
+
+## Data Loader 
 ### What it does
 Allows user to select and load a .hdf5 file containing simulation data. Validates that file format is appropriate for data analysis.
 
@@ -20,6 +33,7 @@ Main menu component
 ### Side effects
 If validation is false, the file was not loaded successfully. An error message indicates to user that they have input either the wrong directory or an invalid file type. The user may try again (by entering a different path to data).
 If validation is true, the user receives a message that their data was loaded successfully and is sent to the main menu.
+
 ## Data configuration (optional)
 ### What it does
 Manages “settings” for the data that is analyzed.
@@ -43,7 +57,7 @@ Data processing/plot creation components
 If user successfully configures advanced parameters, the load success message includes what parameters were restricted and how.
 If the configuration is not valid, the user sees an error message that their configuration was not recognized.
 
-## Data validation
+## Data validation (I guess this is actually sub component of the data loader)
 ### What it does
 Check integrity and completeness of loaded data.
 Ensures that data contains the field necessary for selected analysis.
@@ -66,27 +80,28 @@ Data processing/plot creation compoents
 ### Side effects
 Nothing if the data that the user selected is complete. The user moves to the main menu. 
 If the user has successfully configured data, but the data is not appropriate for the selected analysis, the user receives an error message that tells them that their data cannot be properly analyzed and what the specific issue is.
-## Interface for simple user navigation
+
+## Interface for simple user navigation (we have decided this will be a user generated file of some sort
 ### What it does
-Allows the user to move between menus, submenus, and analysis results without having to restart the analysis/program entirely.
-Maybe we can have “back” and “home” options so that this works program feels like a more user friendly application.
+Allows the user to specify which file to load, how to configure the data, which analysis branch to run, and which sub analyses
+to perform.
 
 ### Inputs
-User commands: navigation options such as “back,” “home,” or specific menu selections.
-Data type: string (unless we decide to make these buttons or something)
+Blank file for user to fill with pre-determined structure
+Data type: list of strings 
 
 ### Outputs
-Updates the current menu/display based on the user’s selection.
-Not sure of the data types here. (What data type is a menu??????????????)
+File with desired user specifications.
 
 ### Talks to
-Main menu component
-Submenu components
+Data loader
+Analysis and sub analysis "menus"
 Data processing/plot creation components
 
 ### Side effects
-If user inputs a valid command (back, home, an option in the currently displayed menu), they are pushed to the appropriate location/view in the program.
-If user inputs invalid command, they see an error message that their command was not recognized.
+If user inputs all valid commands in the file, when the file is run, each line is validated and the analysis runs.
+If user inputs an invalid command, they see an error message indicating which command was not recognized.
+
 ## “Main menu”
 ### What it does
 Offers two main analysis options to the user: energies or geometries. 
@@ -97,9 +112,9 @@ Either “energies” or “geometries.”
 Data type: string.
 
 ### Outputs
-Submenu for analysis of either energies or geometries.
+Submenu for analysis of either energies or geometries (not seen by user, but documented).
 Error message if user did not input “energies” or “geometries.”
-Data type: ???
+Data type: string
 
 ### Talks to:
 Energies analysis submenu
@@ -107,13 +122,12 @@ Geometries analysis submenu
 Interface for user navigation
 
 ### Side effects
-If user entered a valid string, use cases for either the energies or geometries analysis are enabled for the loaded data set.
+If user entered a valid string, when the program is run the user sees a message "analyzing (menu option)..."
 If user entered an invalid string, a user friendly error message is displayed.
 
 ## Energies analysis “sub menu”
 ### What it does
-Lists energy related plots and analyses for the user to choose from.
-Collects user’s selection(s) from these options.
+Collects user’s selection(s) from list of energy related plots and analyses.
 
 ### Inputs
 User selection of plots to visualize desired aspects of the data.
@@ -127,8 +141,8 @@ Data type: funcion call? Tells computer to run functions/jupyter cells to make t
 
 ### Talks to
 Energies data processing/plot creation components
-Navigation component
-Main menu component
+Interface component
+"Main menu" component
 
 ### Side effects
 If user enters the names of the plots they want to create successfully, they are presented with the results display for their selected plots
@@ -139,8 +153,7 @@ If the user enters a list with one or more invalid strings, they receive an erro
 Processes the energy data from the specified .hdf5 file and configuration. Generates the desired energy plot. This will be a separate component for each plot we might want to create.
 
 ### Inputs
-The loaded simulation data.
-
+The loaded simulation data with any additional configurations.
 
 ### Outputs
 One type of energy plot for each of these components. Output will look like the output of a single plot-generating cell in the example notebook pyvibdmc_plotting_examples-checkpoint.ipynb. (Maybe these files are sent to the results display component before the user sees them as an output. This would allow us to organize what the user actually sees in a nicer way).
