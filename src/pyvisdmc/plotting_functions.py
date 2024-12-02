@@ -12,13 +12,21 @@ import pyvibdmc as pv
 
 sns.set_style("white")
 
-path_to_data = '../data/h5o3_example_data/1.0w_50000_walkers_50000t_1dt' #path to the folder containing the simulation data
+#path_to_data = '../data/h5o3_example_data/1.0w_50000_walkers_50000t_1dt' #path to the folder containing the simulation data
 
-def plot_eref():
-    sim_data = pv.SimInfo(f'{path_to_data}/H5O3_0_sim_info.hdf5') #name of the simulation summary file
+def plot_eref(molecule,sim_num,walkers,timesteps,start,stop):
+    if molecule == 'h5o3':
+        name = 'H5O3'
 
-    start = 10000 #where we want to start averaging the energy from
-    stop = 50000 #where we want to average until
+    elif molecule == 'h2o':
+        name = 'H2O'
+
+    path_to_data = f'../../data/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
+
+    sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
+
+    #start = 10000 #where we want to start averaging the energy from
+    #stop = 50000 #where we want to average until
 
     vref = sim_data.get_vref(ret_cm=True) #generates an array of the timesteps and the average energy of the ensemble at that step
     ZPE = np.mean(vref[start:stop][:,1]) #calculate the average energy in the relevant range of time steps (while the energy is stable)
@@ -31,8 +39,8 @@ def plot_eref():
 
     plt.ylabel('Eref (cm$^{-1}$)')
     plt.xlabel('Timestep (1 a.u.)')
-    plt.ylim(7000,15000)
-    plt.savefig('test_zpe.png')
+    #plt.ylim(7000,15000)
+    plt.savefig(f'{molecule}_sim_{sim_num}_zpe.png')
 
 def plot_dist(dist, hist=True,line=True,exp=True):
     snapshots = np.arange(10000,50000,1000) #pull data every 1000 time steps from 10,000 to 50,000
