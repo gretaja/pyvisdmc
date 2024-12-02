@@ -1,0 +1,13 @@
+name: pyvisdmc
+channels:
+  - defaults
+dependencies:
+  - h5py=3.12.1
+  - hdf5=1.12.1
+  - numpy=1.26.4
+  - pandas=2.2.3
+  - pip=24.2
+  - python=3.11.10
+  - seaborn=0.13.2
+  - pip:
+    - pyvibdmc
