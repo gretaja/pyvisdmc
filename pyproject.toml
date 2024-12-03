@@ -8,7 +8,7 @@ version = "0.0.1"
 authors = [
   { name="Greta Jacobson", email="gretaja@uw.edu" }, 
   { name="Lauren Dressler", email="ldress@uw.edu" },
-  { name="Ramses Llobet", email="rllobet@uw.edu" }
+  { name="Ramses Llobet", email="rllobet@uw.edu" },
 ]
 description = "A visualization tool for data from PyVibDMC simulations."
 readme = "README.md"
@@ -17,6 +17,8 @@ dependencies = [
     "h5py",
     "matplotlib",
     "numpy",
+    "seaborn",
+    "pandas",
     "PyYAML",
 ]
 classifiers = [
@@ -30,7 +32,7 @@ Homepage = "https://github.com/gretaja/pyvisdmc"
 Issues = "https://github.com/gretaja/pyvisdmc/issues"
 
 [project.scripts]
-pyvisdmct = "pyvisdmc.main:main"
+pyvisdmc = "pyvisdmc.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
