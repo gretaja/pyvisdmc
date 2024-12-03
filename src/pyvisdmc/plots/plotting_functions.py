@@ -14,14 +14,14 @@ sns.set_style("white")
 
 #path_to_data = '../data/h5o3_example_data/1.0w_50000_walkers_50000t_1dt' #path to the folder containing the simulation data
 
-def plot_eref(molecule,sim_num,walkers,timesteps,start,stop):
+def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
     if molecule == 'h5o3':
         name = 'H5O3'
 
     elif molecule == 'h2o':
         name = 'H2O'
 
-    path_to_data = f'../../data/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
+    path_to_data = f'{data_path}/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
 
     sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
 
