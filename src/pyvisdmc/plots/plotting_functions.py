@@ -15,11 +15,21 @@ sns.set_style("white")
 #path_to_data = '../data/h5o3_example_data/1.0w_50000_walkers_50000t_1dt' #path to the folder containing the simulation data
 
 def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
+    """Saves a .png of a line plot of the average enesemble energy with a simulation,
+    calculates the zero point energy (ZPE) over a specified start and stopping point"""
     if molecule == 'h5o3':
         name = 'H5O3'
 
     elif molecule == 'h2o':
         name = 'H2O'
+
+    else:
+        raise ValueError('Not a valid molecule name')
+    
+    if stop > timesteps:
+        raise ValueError('Stopping point exceeds length of simulation')
+    else:
+        pass
 
     path_to_data = f'{data_path}/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
 
