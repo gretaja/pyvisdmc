@@ -1,4 +1,9 @@
-path_to_data: data/h2o_example_data/1.0w_5000_walkers_20000t_1dt/
+molecule: h2o
+sim_num: 0
+walkers: 5000
+timesteps: 20000
+start: 5000
+stop: 20000
 
 plots:
   - eref
