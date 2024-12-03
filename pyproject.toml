@@ -1,0 +1,26 @@
+[project]
+name = "PyVisDMC"
+version = "0.0.1"
+authors = [
+  { name="Greta Jacobson", email="gretaja@uw.edu>" }, 
+  { name="Lauren Dressler", email="ldress@uw.edu" },
+  { name="Ramses Llobet", email="rllobet@uw.edu" }
+]
+description = "A visualization tool for data from PyVibDMC simulations."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "h5py",
+    "matplotlib",
+    "numpy",
+    "PyYAML",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/gretaja/pyvisdmc"
+Issues = "https://github.com/gretaja/pyvisdmc/issues"
