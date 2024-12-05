@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "PyVisDMC"
 version = "0.0.1"
@@ -24,3 +28,6 @@ classifiers = [
 [project.urls]
 Homepage = "https://github.com/gretaja/pyvisdmc"
 Issues = "https://github.com/gretaja/pyvisdmc/issues"
+
+[project.scripts]
+pyvisdmct = "pyvisdmc.main:main"
