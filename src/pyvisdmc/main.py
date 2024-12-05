@@ -13,9 +13,9 @@ def main():
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
 
-    molecule = congfig.get('molecule')
-    sim_num = congfig.get('sim_num')
-    walkers = congfig.get('walkers')
+    molecule = config.get('molecule')
+    sim_num = config.get('sim_num')
+    walkers = config.get('walkers')
     timesteps = config.get('timesteps')
     start = config.get ('start')
     stop = config.get('stop')
