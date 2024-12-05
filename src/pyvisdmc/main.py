@@ -13,9 +13,13 @@ def main():
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
 
-    path_to_data = config.get('path_to_data')
-    sim_data = load_data(path_to_data)
-
+    molecule = congfig.get('molecule')
+    sim_num = congfig.get('sim_num')
+    walkers = congfig.get('walkers')
+    timesteps = config.get('timesteps')
+    start = config.get ('start')
+    stop = config.get('stop')
+   
     plots = config.get('plots', [])
     if 'eref' in plots:
         plot_eref(sim_data)
