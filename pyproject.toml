@@ -30,7 +30,7 @@ Homepage = "https://github.com/gretaja/pyvisdmc"
 Issues = "https://github.com/gretaja/pyvisdmc/issues"
 
 [project.scripts]
-pyvisdmct = "pyvisdmc.main:main"
+pyvisdmc = "pyvisdmc.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
