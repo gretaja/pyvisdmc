@@ -34,11 +34,9 @@ pyvisdmct = "pyvisdmc.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-
-[tool.setuptools]
-package-dir = {"" = "src"}
+include-package-data = false
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["pyvisdmc"]
-exclude = ["examples", "doc", "tests", "data"]
+include = ["pyvisdmc*"]
+exclude = ["examples*", "doc*", "tests*", "data*"]
