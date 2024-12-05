@@ -22,7 +22,7 @@ def main():
    
     plots = config.get('plots', [])
     if 'eref' in plots:
-        plot_eref(sim_data)
+        plot_eref(molecule,sim_num,walkers,timesteps,start,stop)
 
 if __name__ == '__main__':
     main()
