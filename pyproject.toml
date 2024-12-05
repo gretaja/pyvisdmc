@@ -40,5 +40,5 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["your_package_name*"]
-exclude = ["examples*", "doc*", "tests*", "data*"]
+include = ["pyvisdmc"]
+exclude = ["examples", "doc", "tests", "data"]
