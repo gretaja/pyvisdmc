@@ -1,6 +1,6 @@
-import pyvibdmc as pv
-import h5py
+#import pyvibdmc as pv
+#import h5py
 
-def load_data(path_to_data):
-    sim_data = pv.SimInfo(f'{path_to_data}/H2O_0_sim_info.hdf5')
-    return sim_data
+#def load_data(path_to_data):
+  #  sim_data = pv.SimInfo(f'{path_to_data}/H2O_0_sim_info.hdf5')
+#    return sim_data
