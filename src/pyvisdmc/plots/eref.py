@@ -17,7 +17,7 @@ def plot_eref(molecule,sim_num,walkers,timesteps,start,stop):
     elif molecule == 'h2o':
         name = 'H2O'
 
-    path_to_data = f'../../data/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
+    path_to_data = f'../data/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
 
     sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
 
