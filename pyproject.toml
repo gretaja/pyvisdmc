@@ -18,6 +18,7 @@ dependencies = [
     "matplotlib",
     "numpy",
     "seaborn",
+    "pandas",
     "PyYAML",
 ]
 classifiers = [
