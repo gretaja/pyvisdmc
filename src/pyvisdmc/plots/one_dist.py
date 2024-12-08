@@ -10,7 +10,8 @@ import pyvibdmc as pv
 
 sns.set_style("white")
 
-def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist, hist=True,line=True,exp=True):
+def plot_dist(molecule,sim_num,walkers,timesteps,start,stop):
+              # dist, hist=True,line=True,exp=True):
     """Saves a .png of a histogram and/or line plot of a given distribtion of geometries
       over a specified start and stopping point in the DMC simulation"""
     if molecule == 'h5o3':
