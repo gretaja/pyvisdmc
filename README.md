@@ -48,7 +48,7 @@ PyVisDMC is a Python-based visualization tool designed to read simulation data p
    Specify the path to your data folder, the name of the simulated molecule, the number of walkers, the number of timesteps, the start/stop indices for analysis, and the list of plots to be made (e.g., `eref`, `one_dist`).
 3. **Run PyVisDMC**:  
 ```bash   
-$ pyvisdmc config.yaml
+pyvisdmc config.yaml
 ```
 4. PyVisDMC will find the desired PyVibDMC output file, create the requested plots, and save them in the current directory (maybe we can have a user-specified output path as an alternative here).
 
@@ -75,9 +75,9 @@ plots:
 **Fork the PyVisDMC Repository** on GitHub:
 
 ```bash
-$ git clone git@github.com:yourGitHubAccount/PyVisDMC.git # creates forked repository 
-$ git remote add upstream git@github.com:gretaja/pyvisdmc.git # address of original repository  
-$ git remote -v # runs a check
+git clone git@github.com:yourGitHubAccount/PyVisDMC.git # creates forked repository 
+git remote add upstream git@github.com:gretaja/pyvisdmc.git # address of original repository  
+git remote -v # runs a check
 ```
 
 **Stay Updated**:
