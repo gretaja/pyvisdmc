@@ -9,6 +9,24 @@ def parse_args():
     return parser.parse_args()
 
 def main():
+    # loding package metadata
+    pkg_name = "pyvisdmc"  # Replace with the actual package name in pyproject.toml
+    pkg_meta = metadata(pkg_name)
+    pkg_version = version(pkg_name)
+    pkg_description = pkg_meta.get('Summary', 'No description available.')
+
+    pyvisdmc_art = r"""
+
+    O--O       O   O       O--O   O     O    O--O 
+    |   |      |   | o     |   \  |\   / |  /    
+    H--O  o  o O   O | o-o |    H | \ /  | H     
+    |     |  |  \ /  |  \  |   /  |  H   |  \    
+    O     o--H   H   | o-o O--O   O      O   O--O 
+             |                               
+          o--o                              
+
+    """
+
     args = parse_args()
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
@@ -20,12 +38,21 @@ def main():
     timesteps = config.get('timesteps')
     start = config.get ('start')
     stop = config.get('stop')
+
+    # print the startup message
+    print(pyvisdmc_art)
+    print(f"PyVisDMC version: {pkg_version}")
+    print(pkg_description)
+    print(f"Molecule: {molecule}")
+    print(f"Analyzing {walkers} walkers over {timesteps} timesteps...")
    
     plots = config.get('plots', [])
     if 'eref' in plots:
         plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop)
+        print(f"Eref plot saved as {molecule}_sim_{sim_num}_zpe.png")
     if 'one_dist' in plots:
         plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop)
+        print(f"one_dist plot saved as {molecule}_sim_{sim_num}_distribution.png")
 
 if __name__ == '__main__':
     main()
