@@ -13,12 +13,19 @@ def main():
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
 
-    path_to_data = config.get('path_to_data')
-    sim_data = load_data(path_to_data)
-
+    molecule = config.get('molecule')
+    sim_num = config.get('sim_num')
+    walkers = config.get('walkers')
+    timesteps = config.get('timesteps')
+    start = config.get ('start')
+    stop = config.get('stop')
+   
     plots = config.get('plots', [])
+    
     if 'eref' in plots:
-        plot_eref(sim_data)
+        plot_eref(molecule,sim_num,walkers,timesteps,start,stop)
+    if 'one_dist' in plots:
+        plot_dist(molecule,sim_num,walkers,timesteps,start,stop)
 
 if __name__ == '__main__':
     main()
