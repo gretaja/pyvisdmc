@@ -1,7 +1,7 @@
 import argparse
 import yaml
-from pyvisdmc.utils.data_loader import load_data
 from pyvisdmc.plots.eref  import plot_eref
+from pyvisdmc.plots.one_dist import plot_dist
 
 def parse_args():
     parser = argparse.ArgumentParser()
