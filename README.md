@@ -22,7 +22,7 @@ This program was created at the University of Washington in fall 2024 as a final
   Specify the types of plots (e.g., energy convergence, bond length distributions) directly in a YAML config file without modifying code.  
 * **Set of Built-in Plot Types**:  
   * Average energy of the ensemble over time, including calculation of the zero point energy (ZPE) over specified start and stop points, called `eref`  
-  * Probability distribution of bond lengths, called `one_dist`  
+  * Probability distribution of bond lengths 
   * …others?  
 * **Command-Line Usability**:  
   * Run `pyvisdmc config.yaml` from the command line to generate all requested plots at once  
@@ -52,7 +52,7 @@ pip install git+https://github.com/gretaja/pyvisdmc.git
 1. **Generate Data Using PyVibDMC**:  
    PyVibDMC produces the `.hdf5` file(s) to be analyzed.  
 2. **Prepare a config.yaml File**:  
-   Specify the path to your data folder, the name of the simulated molecule, the number of walkers, the number of timesteps, the start/stop indices for analysis, and the list of plots to be made (e.g., `eref`, `one_dist`).
+   Specify the path to your data folder, the name of the simulated molecule, the number of walkers, the number of timesteps, the start/stop indices for analysis, and the list of plots to be made (e.g., `eref`, ...).
 3. **Run PyVisDMC**:  
 ```bash   
 pyvisdmc config.yaml
@@ -73,7 +73,6 @@ stop: 20000
 
 plots:  
   - eref  
-  - one_dist
 ```
 ---
 
