@@ -46,4 +46,6 @@ def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
     plt.ylabel('Eref (cm$^{-1}$)')
     plt.xlabel('Timestep (1 a.u.)')
     #plt.ylim(7000,15000)
-    plt.savefig(f'{molecule}_sim_{sim_num}_zpe.png')
+    plt.savefig(f'{molecule}_sim_{sim_num}_zpe.png',bbox_inches='tight')
+
+    plt.clf()

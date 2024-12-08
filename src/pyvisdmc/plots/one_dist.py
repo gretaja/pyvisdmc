@@ -69,4 +69,6 @@ def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist,hist=
 
     plt.xlabel(r'Bond Length ($\AA$)')
     plt.ylabel('Probability Amplitude')
-    plt.savefig('test_dist.png')
+    plt.savefig('test_dist.png',bbox_inches='tight')
+
+    plt.clf()
