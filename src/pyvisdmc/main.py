@@ -10,7 +10,7 @@ def parse_args():
 
 def main():
     # loding package metadata
-    pkg_name = "pyvisdmc"  # Replace with the actual package name in pyproject.toml
+    pkg_name = "PyVisDMC"  
     pkg_meta = metadata(pkg_name)
     pkg_version = version(pkg_name)
     pkg_description = pkg_meta.get('Summary', 'No description available.')
