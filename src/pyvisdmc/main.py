@@ -21,7 +21,6 @@ def main():
     stop = config.get('stop')
    
     plots = config.get('plots', [])
-    
     if 'eref' in plots:
         plot_eref(molecule,sim_num,walkers,timesteps,start,stop)
     if 'one_dist' in plots:
