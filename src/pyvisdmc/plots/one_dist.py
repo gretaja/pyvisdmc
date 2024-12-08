@@ -10,8 +10,7 @@ import pyvibdmc as pv
 
 sns.set_style("white")
 
-def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop):
-              # dist, hist=True,line=True,exp=True):
+def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist,hist=True,line=True,exp=True):
     """Saves a .png of a histogram and/or line plot of a given distribtion of geometries
       over a specified start and stopping point in the DMC simulation"""
     if molecule == 'h5o3':
@@ -29,8 +28,6 @@ def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop):
         raise ValueError('Stopping point exceeds length of simulation')
     else:
         pass
-
-    distance = analyzer.bond_length(dist[0],dist[1])
 
     for ind in dist:
         if ind > num_atoms - 1:
