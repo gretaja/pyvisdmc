@@ -7,4 +7,4 @@ timesteps: 20000
 start: 5000
 stop: 20000
 plots:
-  - one_dist
+  - eref
