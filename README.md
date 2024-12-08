@@ -53,7 +53,7 @@ pip install git+https://github.com/gretaja/pyvisdmc.git
    PyVibDMC produces the `.hdf5` file(s) to be analyzed.  
 2. **Prepare a config.yaml File**:  
    Specify the path to your data folder, the name of the simulated molecule, the number of walkers, the number of timesteps, the start/stop indices for analysis, and the list of plots to be made (e.g., `eref`, ...).
-3. **Run PyVisDMC**:  
+3. **Run PyVisDMC in the command line**:  
 ```bash   
 pyvisdmc config.yaml
 ```
