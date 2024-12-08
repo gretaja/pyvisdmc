@@ -10,7 +10,7 @@ import pyvibdmc as pv
 
 sns.set_style("white")
 
-def plot_eref(molecule,sim_num,walkers,timesteps,start,stop):
+def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
     """Saves a .png of a line plot of the average enesemble energy with a simulation,
     calculates the zero point energy (ZPE) over a specified start and stopping point"""
     if molecule == 'h5o3':
