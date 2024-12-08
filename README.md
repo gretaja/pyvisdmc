@@ -43,7 +43,7 @@ This program was created at the University of Washington in fall 2024 as a final
 To install the most recent version of PyVisDMC, run the following from the command line: 
 
 ```bash
-pip install git+https://github.com/yourusername/visplot.git
+pip install git+https://github.com/gretaja/pyvisdmc.git
 ```
 
 
@@ -82,7 +82,7 @@ plots:
 **Fork the PyVisDMC Repository** on GitHub:
 
 ```bash
-git clone git@github.com:yourGitHubAccount/PyVisDMC.git # creates forked repository 
+git clone git@github.com:yourGitHubUsername/pyvisdmc.git # creates forked repository 
 git remote add upstream git@github.com:gretaja/pyvisdmc.git # address of original repository  
 git remote -v # runs a check
 ```
