@@ -21,6 +21,8 @@ def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop):
     elif molecule == 'h2o':
         name = 'H2O'
         num_atoms = 3
+      
+    distance = analyzer.bond_length(dist[0],dist[1])
 
     else:
         raise ValueError('Not a valid molecule name')
