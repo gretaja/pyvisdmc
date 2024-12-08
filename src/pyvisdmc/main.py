@@ -42,8 +42,8 @@ def main():
 
     # print the startup message
     print(pyvisdmc_art)
-    print(f"PyVisDMC version: {pkg_version}")
     print(pkg_description)
+    print(f"Version {pkg_version}")
     print(f"Molecule: {molecule}")
     print(f"Analyzing {walkers} walkers over {timesteps} timesteps...")
    
