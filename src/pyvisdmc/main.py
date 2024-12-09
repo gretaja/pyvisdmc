@@ -4,29 +4,28 @@ from importlib.metadata import metadata, version
 from pyvisdmc.plots.eref  import plot_eref
 from pyvisdmc.plots.one_dist import plot_dist
 
-def startup():
-    # loding package metadata
-    pkg_name = "PyVisDMC"  
-    pkg_meta = metadata(pkg_name)
-    pkg_version = version(pkg_name)
-    pkg_description = pkg_meta.get('Summary', 'No description available.')
+# loding package metadata
+pkg_name = "PyVisDMC"  
+pkg_meta = metadata(pkg_name)
+pkg_version = version(pkg_name)
+pkg_description = pkg_meta.get('Summary', 'No description available.')
 
-    pyvisdmc_art = r"""
+pyvisdmc_art = r"""
 
-    O--O       O   O       O--O   O     O    O--O 
-    |   |      |   | o     |   \  |\   / |  /    
-    H--O  o  o O   O | o-o |    H | \ /  | H     
-    |     |  |  \ /  |  \  |   /  |  H   |  \    
-    O     o--H   H   | o-o O--O   O      O   O--O 
-             |                               
-          o--o                              
+O--O       O   O       O--O   O     O    O--O 
+|   |      |   | o     |   \  |\   / |  /    
+H--O  o  o O   O | o-o |    H | \ /  | H     
+|     |  |  \ /  |  \  |   /  |  H   |  \    
+O     o--H   H   | o-o O--O   O      O   O--O 
+         |                               
+      o--o                              
 
     """
     
-    # print the startup message
-    print(pyvisdmc_art)
-    print(pkg_description)
-    print(f"Version {pkg_version}")
+# print the startup message
+print(pyvisdmc_art)
+print(pkg_description)
+print(f"Version {pkg_version}")
     
 def parse_args():
     parser = argparse.ArgumentParser()
