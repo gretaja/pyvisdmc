@@ -53,7 +53,7 @@ def main():
         print(f"Eref plot saved as {molecule}_sim_{sim_num}_zpe.png")
     if 'one_dist' in plots:
         dist = config.get('dist')
-        plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop)
+        plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist))
         print(f"one_dist plot saved as {molecule}_sim_{sim_num}_distribution.png")
 
 if __name__ == '__main__':
