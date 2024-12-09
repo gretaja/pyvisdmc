@@ -8,3 +8,4 @@ start: 5000
 stop: 20000
 plots:
   - eref
+  - one_dist
