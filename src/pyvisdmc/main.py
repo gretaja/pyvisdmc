@@ -3,29 +3,8 @@ import yaml
 from importlib.metadata import metadata, version
 from pyvisdmc.plots.eref  import plot_eref
 from pyvisdmc.plots.one_dist import plot_dist
-
-# loding package metadata
-pkg_name = "PyVisDMC"  
-pkg_meta = metadata(pkg_name)
-pkg_version = version(pkg_name)
-pkg_description = pkg_meta.get('Summary', 'No description available.')
-
-pyvisdmc_art = r"""
-
-O--O       O   O       O--O   O     O    O--O 
-|   |      |   | o     |   \  |\   / |  /    
-H--O  o  o O   O | o-o |    H | \ /  | H     
-|     |  |  \ /  |  \  |   /  |  H   |  \    
-O     o--H   H   | o-o O--O   O      O   O--O 
-         |                               
-      o--o                              
-
-    """
-    
-# print the startup message
-print(pyvisdmc_art)
-print(pkg_description)
-print(f"Version {pkg_version}")
+from pyvisdmc.plots.mult_dist import plot_dists
+from pyvisdmc.plots.two_d_dist import plot_2d
     
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -33,6 +12,30 @@ def parse_args():
     return parser.parse_args()
 
 def main():
+
+    # loding package metadata
+    pkg_name = "PyVisDMC"  
+    pkg_meta = metadata(pkg_name)
+    pkg_version = version(pkg_name)
+    pkg_description = pkg_meta.get('Summary', 'No description available.')
+
+    pyvisdmc_art = r"""
+
+    O--O       O   O       O--O   O     O    O--O 
+    |   |      |   | o     |   \  |\   / |  /    
+    H--O  o  o O   O | o-o |    H | \ /  | H     
+    |     |  |  \ /  |  \  |   /  |  H   |  \    
+    O     o--H   H   | o-o O--O   O      O   O--O 
+             |                               
+          o--o                              
+
+    """
+    
+    # print the startup message
+    print(pyvisdmc_art)
+    print(pkg_description)
+    print(f"Version {pkg_version}")
+         
     args = parse_args()
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
