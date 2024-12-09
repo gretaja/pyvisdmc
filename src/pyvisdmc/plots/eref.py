@@ -60,7 +60,7 @@ def plot_eref(molecule,sim_num,sim_data,start,stop):
               xmin = start,
               xmax= stop,
               color = 'tab:orange',
-              label = f'ZPE:{zpe:.2f}') # changed to f-string format
+              label = rf'ZPE: {zpe:.2f} cm$^-$$^1$') # changed to f-string format
     plt.legend()
 
     # Add axis labels

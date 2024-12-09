@@ -68,13 +68,13 @@ def main():
         print(f"one_dist plot saved as {molecule}_{dist[0]}{dist[1]}_dist.png")
         print("")
     if 'mult_dist' in plots:
-        dists = config.get('dists')
-        plot_dists(molecule,sim_num,analyzer,weights,dists)
+        mult_dists = config.get('mult_dists')
+        plot_dists(molecule,sim_num,analyzer,weights,mult_dists,hist=False,exp=False)
         print(f"mult_dist plot saved as {molecule}_sim_{sim_num}_mult_dists.png")
         print("")
     if 'two_d_dist' in plots:
-        dists = config.get('dists')
-        plot_2d(molecule,sim_num,analyzer,weights,dists)
+        two_d_dists = config.get('2d_dists')
+        plot_2d(molecule,sim_num,analyzer,weights,two_d_dists,exp=False)
         print(f"two_d_dist plot saved as {molecule}_sim_{sim_num}_2d.png")
         print("")
 

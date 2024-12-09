@@ -76,19 +76,23 @@ def plot_dists(molecule,sim_num,analyzer,weights,dists,hist=True,line=True,exp=T
         if line:
             for i in range(len(dist_vals)):
                 # Normalizes the distribution so the total probability is 1
-                sns.histplot(dist_vals[i], kde=True, bins=50,label=f'{dists[i][0]}{dists[i][1]}')
+                sns.histplot(dist_vals[i], kde=True, bins=50, common_norm=True, label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+                       f'{exp_vals[i]:.4f} $\\AA$')
         else:
             for i in range(len(dist_vals)):
-                sns.histplot(dist_vals[i], kde=False, bins=50,label=f'{dists[i][0]}{dists[i][1]}')
+                sns.histplot(dist_vals[i], kde=False, bins=50, common_norm = True, label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+                       f'{exp_vals[i]:.4f} $\\AA$')
     else:
         for i in range(len(dist_vals)):
-            sns.kdeplot(dist_vals[i],label=f'{dists[i][0]}{dists[i][1]}')
+            sns.kdeplot(dist_vals[i],linewidth=2.5,label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+                       f'{exp_vals[i]:.4f} $\\AA$')
     # If exp is true, plot vertical lines for expectation values
     if exp:
         for i in range(len(exp_vals)):
             plt.vlines(exp_vals[i], 0, 6,
-                       label=rf'$\langle${dists[i][0]}{dists[i][1]}$\rangle$='
-                       f'{exp_vals[i]:.4f}$\\AA$')
+                       #label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+                       #f'{exp_vals[i]:.4f} $\\AA$'
+                       )
     else:
         pass
     # Add legend, axis labels, and save the plot

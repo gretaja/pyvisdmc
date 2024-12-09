@@ -1,12 +1,12 @@
 # This is a sample user input file.
 
 # The following 8 arguments are required for all configuration files.
-data_path: data
-molecule: h2o
+data_path: src/pyvisdmc/test_data
+molecule: h5o3
 sim_num: 0
 walkers: 5000
 timesteps: 20000
-start: 5000
+start: 10000
 stop: 20000
 
 plots:
@@ -19,5 +19,9 @@ plots:
 # Additional required argument for one_dist plot: specify which length to analyze.
 dist: [0,1]
 
-# Additional required argument for mult_dist and two_d_dist plots: specify which lengths to analyze.
-dists: [[0,1], [1,2]]
+# Additional required argument for mult_dist plot: specify which lengths to analyze.
+mult_dists: [[2,3], [2,4], [2,0]]
+
+# Additional required argument for two_d_dist plot: specify which lengths to analyze.
+2d_dists: [[2,3], [5,6]]
+
