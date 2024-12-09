@@ -1,0 +1,24 @@
+#### Pylint test - plotting_functions ####
+
+PS D:\GitHub\pyvisdmc\src\pyvisdmc\plots> python -m pylint plotting_functions.py
+
+************* Module pyvisdmc.plots.plotting_functions
+plotting_functions.py:34:0: R0913: Too many arguments (7/5) (too-many-arguments)
+plotting_functions.py:34:0: R0917: Too many positional arguments (7/5) (too-many-positional-arguments)
+plotting_functions.py:61:4: R1720: Unnecessary "else" after "raise", remove the "else" and de-indent the code inside it (no-else-raise)
+plotting_functions.py:81:4: C0103: Variable name "ZPE" doesn't conform to snake_case naming style (invalid-name)
+plotting_functions.py:90:21: C0209: Formatting a regular string which could be an f-string (consider-using-f-string)
+plotting_functions.py:117:29: E0602: Undefined variable 'path_to_data' (undefined-variable)
+plotting_functions.py:120:4: W0632: Possible unbalanced tuple unpacking with sequence defined at line 81 of pyvibdmc.analysis.extract_sim_info: left side has 2 labels, right side has 3 values (unbalanced-tuple-unpacking)
+plotting_functions.py:133:7: C0121: Comparison 'hist == True' should be 'hist is True' if checking for the singleton value True, or 'hist' if testing for truthiness (singleton-comparison)
+plotting_functions.py:134:11: C0121: Comparison 'line == True' should be 'line is True' if checking for the singleton value True, or 'line' if testing for truthiness (singleton-comparison)
+plotting_functions.py:149:7: C0121: Comparison 'exp == True' should be 'exp is True' if checking for the singleton value True, or 'exp' if testing for truthiness (singleton-comparison)
+plotting_functions.py:173:11: E0602: Undefined variable 'path_to_data' (undefined-variable)
+plotting_functions.py:176:4: W0632: Possible unbalanced tuple unpacking with sequence defined at line 81 of pyvibdmc.analysis.extract_sim_info: left side has 2 labels, right side has 3 values (unbalanced-tuple-unpacking)
+plotting_functions.py:184:4: C0200: Consider using enumerate instead of iterating with range and len (consider-using-enumerate)
+plotting_functions.py:176:12: W0612: Unused variable 'weights' (unused-variable)
+plotting_functions.py:21:0: W0611: Unused import h5py (unused-import)
+plotting_functions.py:22:0: W0611: Unused pandas imported as pd (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 6.00/10 (previous run: 5.33/10, +0.67)
