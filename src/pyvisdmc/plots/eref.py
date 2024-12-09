@@ -47,7 +47,7 @@ def plot_eref(molecule,sim_num,sim_data,start,stop):
 
     if stop > len(vref):
         raise ValueError(
-            f"The stop time {stop} exceeds the length of the available data ({len(vref)})."
+            f"The stop time {stop} exceeds the length of the available data"
         )
     # Calculate the ZPE in the relevant range of time steps (while the energy is stable)
     zpe = np.mean(vref[start:stop][:, 1])

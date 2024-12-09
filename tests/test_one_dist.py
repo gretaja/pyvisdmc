@@ -7,6 +7,7 @@ import numpy as np
 
 from pyvisdmc.plots import plot_dist
 from pyvisdmc.test_data import DATA_PATH
+from pyvisdmc.utils.data_loader import load_data, sim_info
 
 def test_smoke_default():
     """
@@ -21,7 +22,11 @@ def test_smoke_default():
 
     dist = [0,1]
 
-    plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
+
+    plot_dist(molecule,analyzer,weights,dist)
 
     return
 
@@ -38,7 +43,11 @@ def test_smoke_hist_false():
 
     dist = [0,1]
 
-    plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist,hist=False)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
+
+    plot_dist(molecule,analyzer,weights,dist,hist=False)
 
     return
 
@@ -55,7 +64,11 @@ def test_smoke_line_false():
 
     dist = [0,1]
 
-    plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist,line=False)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
+
+    plot_dist(molecule,analyzer,weights,dist,line=False)
 
     return
 
@@ -72,7 +85,11 @@ def test_smoke_exp_false():
 
     dist = [0,1]
 
-    plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist,exp=False)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
+
+    plot_dist(molecule,analyzer,weights,dist,exp=False)
 
     return
 
@@ -92,29 +109,13 @@ def test_molecule_name():
 
         dist = [0,1]
 
-        plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist)
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        analyzer, weights = sim_info(sim_data,start,stop)
+
+        plot_dist(molecule,analyzer,weights,dist)
 
     return 
-
-def test_stop_value():
-    """
-    Edge test for stop value exeeding length of simulation
-    """
-    with pytest.raises(
-        ValueError, match="Stopping point exceeds length of simulation"
-    ):
-        molecule = 'h2o'
-        sim_num = 0
-        walkers = 5000
-        timesteps = 20000
-        start = 5000
-        stop = 30000
-
-        dist = [0,1]
-
-        plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist)
-
-    return
 
 def test_atom_indices():
     """
@@ -132,7 +133,11 @@ def test_atom_indices():
 
         dist = [0,4]
 
-        plot_dist(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dist)
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        analyzer, weights = sim_info(sim_data,start,stop)
+
+        plot_dist(molecule,analyzer,weights,dist)
 
     return 
 

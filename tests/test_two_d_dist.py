@@ -7,6 +7,7 @@ import numpy as np
 
 from pyvisdmc.plots import plot_2d
 from pyvisdmc.test_data import DATA_PATH
+from pyvisdmc.utils.data_loader import load_data, sim_info
 
 def test_smoke_default():
     """
@@ -21,7 +22,11 @@ def test_smoke_default():
 
     dists = [[0,1],[0,2]]
 
-    plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
+
+    plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True)
 
     return
 
@@ -39,7 +44,11 @@ def test_smoke_exp_false():
 
     dists = [[0,1],[0,2]]
 
-    plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists,exp=False)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
+
+    plot_2d(molecule,sim_num,analyzer,weights,dists,exp=False)
 
     return
 
@@ -59,29 +68,13 @@ def test_molecule_name():
 
         dists = [[0,1],[0,2]]
 
-        plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        analyzer, weights = sim_info(sim_data,start,stop)
+
+        plot_2d(molecule,sim_num,analyzer,weights,dists)
 
     return 
-
-def test_stop_value():
-    """
-    Edge test for stop value exeeding length of simulation
-    """
-    with pytest.raises(
-        ValueError, match="Stopping point exceeds length of simulation"
-    ):
-        molecule = 'h2o'
-        sim_num = 0
-        walkers = 5000
-        timesteps = 20000
-        start = 5000
-        stop = 30000
-
-        dists = [[0,1],[0,2]]
-
-        plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists)
-
-    return
 
 def test_atom_indices():
     """
@@ -99,7 +92,11 @@ def test_atom_indices():
 
         dists = [[0,4],[0,2]]
 
-        plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        analyzer, weights = sim_info(sim_data,start,stop)
+
+        plot_2d(molecule,sim_num,analyzer,weights,dists)
 
     return 
 
@@ -119,7 +116,11 @@ def test_dists_shape():
 
         dists = [[0,1],[0,2],[1,2]]
 
-        plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        analyzer, weights = sim_info(sim_data,start,stop)
+
+        plot_2d(molecule,sim_num,analyzer,weights,dists)
 
     return
 

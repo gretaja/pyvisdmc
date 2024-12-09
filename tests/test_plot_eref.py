@@ -7,6 +7,7 @@ import numpy as np
 
 from pyvisdmc.plots import plot_eref
 from pyvisdmc.test_data import DATA_PATH
+from pyvisdmc.utils.data_loader import load_data
 
 def test_smoke():
     """
@@ -19,7 +20,9 @@ def test_smoke():
     start = 5000
     stop = 20000
 
-    plot_eref(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop)
+    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+    plot_eref(molecule,sim_num,sim_data,start,stop)
 
     return
 
@@ -37,7 +40,9 @@ def test_molecule_name():
         start = 5000
         stop = 20000
 
-        plot_eref(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop)
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        plot_eref(molecule,sim_num,sim_data,start,stop)
 
     return 
 
@@ -45,17 +50,19 @@ def test_stop_value():
     """
     Edge test for stop value exeeding length of simulation
     """
-    with pytest.raises(
-        ValueError, match="Stopping point exceeds length of simulation"
-    ):
-        molecule = 'h2o'
-        sim_num = 0
-        walkers = 5000
-        timesteps = 20000
-        start = 5000
-        stop = 30000
+    molecule = 'h2o'
+    sim_num = 0
+    walkers = 5000
+    timesteps = 20000
+    start = 5000
+    stop = 30000
 
-        plot_eref(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop)
+    with pytest.raises(
+        ValueError, match=f"The stop time {stop} exceeds the length of the available data"
+    ):
+        sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+
+        plot_eref(molecule,sim_num,sim_data,start,stop)
 
     return 
 
