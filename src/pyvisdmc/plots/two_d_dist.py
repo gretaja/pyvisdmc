@@ -56,8 +56,8 @@ def plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True):
     else:
         raise ValueError('Not a valid molecule name')
     # Validate the atom indices for each bond in dists
-    for d in enumerate(dists):
-        for ind in dists[d]:
+    for dist in dists:
+        for ind in dist:
             if ind > num_atoms - 1:
                 raise ValueError('Atom index exceeds number of atoms in this molecule')
     # Ensure that 'dists' contains exactly two pairs of atom indices
