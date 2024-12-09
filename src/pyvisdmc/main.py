@@ -4,12 +4,7 @@ from importlib.metadata import metadata, version
 from pyvisdmc.plots.eref  import plot_eref
 from pyvisdmc.plots.one_dist import plot_dist
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('config', help='path to the YAML configuration file.')
-    return parser.parse_args()
-
-def main():
+def startup():
     # loding package metadata
     pkg_name = "PyVisDMC"  
     pkg_meta = metadata(pkg_name)
@@ -27,7 +22,18 @@ def main():
           o--o                              
 
     """
+    
+    # print the startup message
+    print(pyvisdmc_art)
+    print(pkg_description)
+    print(f"Version {pkg_version}")
+    
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('config', help='path to the YAML configuration file.')
+    return parser.parse_args()
 
+def main():
     args = parse_args()
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
@@ -39,15 +45,11 @@ def main():
     timesteps = config.get('timesteps')
     start = config.get ('start')
     stop = config.get('stop')
+    plots = config.get('plots', [])
 
-    # print the startup message
-    print(pyvisdmc_art)
-    print(pkg_description)
-    print(f"Version {pkg_version}")
     print(f"Molecule: {molecule}")
     print(f"Analyzing {walkers} walkers over {timesteps} timesteps...")
    
-    plots = config.get('plots', [])
     if 'eref' in plots:
         plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop)
         print(f"Eref plot saved as {molecule}_sim_{sim_num}_zpe.png")
@@ -55,6 +57,14 @@ def main():
         dist = config.get('dist')
         plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist)
         print(f"one_dist plot saved as {molecule}_sim_{sim_num}_distribution.png")
+    if 'mult_dist' in plots:
+        dists = config.get('dists')
+        plot_dists(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        print(f"mult_dist plot saved as {molecule}_sim_{sim_num}_mult_dists.png")
+    if 'two_d_dist' in plots:
+        dists = config.get('dists')
+        plot_2d(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        print(f"two_d_dist plot saved as {molecule}_sim_{sim_num}_2d.png")
 
 if __name__ == '__main__':
     main()
