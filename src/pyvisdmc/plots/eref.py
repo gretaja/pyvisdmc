@@ -28,7 +28,7 @@ def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
         pass
 
     path_to_data = f'{data_path}/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
-
+    print(f"Creating eref plot for {path_to_data}.")
     sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
 
     #start = 10000 #where we want to start averaging the energy from
