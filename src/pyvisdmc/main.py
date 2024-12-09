@@ -5,6 +5,7 @@ from pyvisdmc.plots.eref  import plot_eref
 from pyvisdmc.plots.one_dist import plot_dist
 from pyvisdmc.plots.mult_dist import plot_dists
 from pyvisdmc.plots.two_d_dist import plot_2d
+from pyvisdmc.utils.data_loader import load_data, sim_info
     
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -52,24 +53,28 @@ def main():
     print(f"Molecule: {molecule}")
     print(f"Analyzing {walkers} walkers over {timesteps} timesteps...")
     print("")
+
+    sim_data = load_data(data_path,molecule,sim_num,walkers,timesteps)
+
+    analyzer, weights = sim_info(sim_data,start,stop)
    
     if 'eref' in plots:
-        plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop)
+        plot_eref(molecule,sim_num,sim_data,start,stop)
         print(f"Eref plot saved as {molecule}_sim_{sim_num}_zpe.png")
         print("")
     if 'one_dist' in plots:
         dist = config.get('dist')
-        plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist)
-        print(f"one_dist plot saved as {molecule}_sim_{sim_num}_distribution.png")
+        plot_dist(molecule,analyzer,weights,dist)
+        print(f"one_dist plot saved as {molecule}_{dist[0]}{dist[1]}_dist.png")
         print("")
     if 'mult_dist' in plots:
         dists = config.get('dists')
-        plot_dists(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        plot_dists(molecule,sim_num,analyzer,weights,dists)
         print(f"mult_dist plot saved as {molecule}_sim_{sim_num}_mult_dists.png")
         print("")
     if 'two_d_dist' in plots:
         dists = config.get('dists')
-        plot_2d(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists)
+        plot_2d(molecule,sim_num,analyzer,weights,dists)
         print(f"two_d_dist plot saved as {molecule}_sim_{sim_num}_2d.png")
         print("")
 
