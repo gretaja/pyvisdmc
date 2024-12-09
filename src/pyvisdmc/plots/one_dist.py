@@ -29,7 +29,7 @@ def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist,hist=
     else:
         pass
 
-    for ind in dist:
+    for ind in range(dist):
         if ind > num_atoms - 1:
             raise ValueError('Atom index exceeds number of atoms in this molecule')
         
