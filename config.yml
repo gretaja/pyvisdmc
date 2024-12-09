@@ -6,7 +6,7 @@ walkers: 5000
 timesteps: 20000
 start: 5000
 stop: 20000
-dist: 1
+dist: 2
 
 plots:
   - eref
