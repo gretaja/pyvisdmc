@@ -103,3 +103,23 @@ def test_atom_indices():
 
     return 
 
+def test_dists_shape():
+    """
+    Edge test for dists not being a list of size 2
+    """
+    with pytest.raises(
+        ValueError, match='"dists" must be a list of two pairs of atom indices'
+    ):
+        molecule = 'h2o'
+        sim_num = 0
+        walkers = 5000
+        timesteps = 20000
+        start = 5000
+        stop = 20000
+
+        dists = [[0,1],[0,2],[1,2]]
+
+        plot_2d(DATA_PATH,molecule,sim_num,walkers,timesteps,start,stop,dists)
+
+    return
+
