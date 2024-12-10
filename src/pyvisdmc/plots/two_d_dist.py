@@ -44,6 +44,8 @@ def plot_2d(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists,exp=Tr
 
     path_to_data = f'{data_path}/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
 
+    print(f"Creating plot two_d_dist for dists {dists} from file {path_to_data}...")
+    
     sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
     snapshots = np.arange(start,stop,1000) #pull data every 1000 time steps from start to stop
 
