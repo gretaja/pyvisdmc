@@ -13,12 +13,13 @@ Dependencies:
 - numpy, matplotlib, seaborn
 """
 
-import numpy as np
+import numpy as np # unused import, shall we delete?
 import matplotlib
-matplotlib.use('Agg')  # Use a non-interactive backend
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Use a non-interactive backend
+matplotlib.use('Agg')
 # Set seaborn style
 sns.set_style("white")
 
@@ -34,9 +35,9 @@ def plot_dists(molecule,sim_num,analyzer,weights,dists,hist=True,line=True,exp=T
     - analyzer: An instance of pyvibdmc's AnalyzeWfn class, used to analyze wavefunctions.
     - weights: Weights associated with the molecular geometries.
     - dists: List of pairs of atom indices representing bonds (e.g., [[0, 1], [2, 3]]).
-    - hist: If True, generate a histogram. Defaults to True.
-    - line: If True, overlay a KDE (Kernel Density Estimate) line on the histogram. Defaults to True.
-    - exp: If True, include vertical lines for the expectation values. Defaults to True.
+    - hist: If True, generate a histogram.
+    - line: If True, overlay a KDE (Kernel Density Estimate) line on the histogram.
+    - exp: If True, include vertical lines for the expectation values.
 
     Raises:
     - ValueError: If the molecule name is invalid or any atom index in `dists` 
@@ -53,14 +54,11 @@ def plot_dists(molecule,sim_num,analyzer,weights,dists,hist=True,line=True,exp=T
         num_atoms = 3
     else:
         raise ValueError('Not a valid molecule name')
-    
     # Validate the atom indices for each bond in dists
-    for d in range(len(dists)):
-        for ind in dists[d]:
+    for dist in enumerate(dists):
+        for ind in dist:
             if ind > num_atoms - 1:
                 raise ValueError('Atom index exceeds number of atoms in this molecule')
-            else:
-                pass
     print(f"Creating plot mult_dist for dists {dists} for {molecule}...")
 
     dist_vals = []
@@ -73,32 +71,28 @@ def plot_dists(molecule,sim_num,analyzer,weights,dists,hist=True,line=True,exp=T
         # Calculates the expectation value (average) of the quantity
         exp_val = analyzer.exp_val(distance,weights)
         exp_vals.append(exp_val)
-    
-    # Generate histograms or density plots
-    if hist==True:
-        if line==True:
-            for i in range(len(dist_vals)):
+    # If hist is true, generate histograms or density plots
+    if hist:
+        if line:
+            for i in enumerate(dist_vals):
                 # Normalizes the distribution so the total probability is 1
                 sns.histplot(dist_vals[i], kde=True, bins=50,label=f'{dists[i][0]}{dists[i][1]}')
         else:
-            for i in range(len(dist_vals)):
+            for i in enumerate(dist_vals):
                 sns.histplot(dist_vals[i], kde=False, bins=50,label=f'{dists[i][0]}{dists[i][1]}')
-
     else:
-        for i in range(len(dist_vals)):
+        for i in enumerate(dist_vals):
             sns.kdeplot(distance,label=f'{dist[0]}{dist[1]}')
-
-    # Plot vertical lines for expectation values
-    if exp==True:
-        for i in range(len(exp_vals)):
+    # If exp is true, plot vertical lines for expectation values
+    if exp:
+        for i in enumerate(exp_vals):
             plt.vlines(exp_vals[i], 0, 6,
-                       label=rf'$\langle${dists[i][0]}{dists[i][1]}$\rangle$ = {exp_vals[i]:.4f} $\AA$')
+                       label=rf'$\langle${dists[i][0]}{dists[i][1]}$\rangle$='
+                       f'{exp_vals[i]:.4f}$\\AA$')
     else:
         pass
-    
     # Add legend, axis labels, and save the plot
     plt.legend()
-
     plt.xlabel(r'Bond Length ($\AA$)')
     plt.ylabel('Probability Amplitude')
     plt.savefig(f'{molecule}_sim_{sim_num}_mult_dists.png',bbox_inches='tight')
