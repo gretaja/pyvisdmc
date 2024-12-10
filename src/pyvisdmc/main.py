@@ -24,24 +24,30 @@ def main():
     stop = config.get('stop')
     plots = config.get('plots', [])
 
+    print("")
     print(f"Molecule: {molecule}")
     print(f"Analyzing {walkers} walkers over {timesteps} timesteps...")
+    print("")
    
     if 'eref' in plots:
         plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop)
         print(f"Eref plot saved as {molecule}_sim_{sim_num}_zpe.png")
+        print("")
     if 'one_dist' in plots:
         dist = config.get('dist')
         plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist)
         print(f"one_dist plot saved as {molecule}_sim_{sim_num}_distribution.png")
+        print("")
     if 'mult_dist' in plots:
         dists = config.get('dists')
         plot_dists(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists)
         print(f"mult_dist plot saved as {molecule}_sim_{sim_num}_mult_dists.png")
+        print("")
     if 'two_d_dist' in plots:
         dists = config.get('dists')
         plot_2d(data_path,molecule,sim_num,walkers,timesteps,start,stop,dists)
         print(f"two_d_dist plot saved as {molecule}_sim_{sim_num}_2d.png")
+        print("")
 
 if __name__ == '__main__':
     # loding package metadata
