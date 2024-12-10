@@ -11,32 +11,7 @@ def parse_args():
     parser.add_argument('config', help='path to the YAML configuration file.')
     return parser.parse_args()
 
-def main():
-
-    # loding package metadata
-    pkg_name = "PyVisDMC"  
-    pkg_meta = metadata(pkg_name)
-    pkg_version = version(pkg_name)
-    pkg_description = pkg_meta.get('Summary', 'No description available.')
-
-    pyvisdmc_art = r"""
-
-    O--O       O   O       O--O   O     O    O--O 
-    |   |      |   | o     |   \  |\   / |  /    
-    H--O  o  o O   O | o-o |    H | \ /  | H     
-    |     |  |  \ /  |  \  |   /  |  H   |  \    
-    O     o--H   H   | o-o O--O   O      O   O--O 
-             |                               
-          o--o                              
-
-    """
-    
-    # print the startup message
-    print(pyvisdmc_art)
-    print(pkg_description)
-    print(f"Version {pkg_version}")
-         
-    args = parse_args()
+def main():     
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
 
@@ -69,4 +44,27 @@ def main():
         print(f"two_d_dist plot saved as {molecule}_sim_{sim_num}_2d.png")
 
 if __name__ == '__main__':
-    main()
+    # loding package metadata
+    pkg_name = "PyVisDMC"  
+    pkg_meta = metadata(pkg_name)
+    pkg_version = version(pkg_name)
+    pkg_description = pkg_meta.get('Summary', 'No description available.')
+
+    pyvisdmc_art = r"""
+
+    O--O       O   O       O--O   O     O    O--O 
+    |   |      |   | o     |   \  |\   / |  /    
+    H--O  o  o O   O | o-o |    H | \ /  | H     
+    |     |  |  \ /  |  \  |   /  |  H   |  \    
+    O     o--H   H   | o-o O--O   O      O   O--O 
+             |                               
+          o--o                              
+
+    """
+    
+    # print the startup message
+    print(pyvisdmc_art)
+    print(pkg_description)
+    print(f"Version {pkg_version}")
+    args = parse_args()
+    main(args)
