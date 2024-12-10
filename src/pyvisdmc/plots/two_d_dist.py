@@ -14,10 +14,11 @@ Dependencies:
 """
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')  # Use a non-interactive backend
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Use a non-interactive backend
+matplotlib.use('Agg')
 # Set seaborn style
 sns.set_style("white")
 
@@ -30,10 +31,13 @@ def plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True):
     Parameters:
     - molecule: The molecule being analyzed (e.g., 'h5o3', 'h2o').
     - sim_num: The simulation number.
-    - analyzer: An instance of pyvibdmc's AnalyzeWfn class, used to analyze wavefunctions.
+    - analyzer: An instance of pyvibdmc's AnalyzeWfn class, used to analyze 
+    wavefunctions.
     - weights: Weights associated with the molecular geometries.
-    - dists: List of two pairs of atom indices representing bonds (e.g., [[0, 1], [2, 3]]).
-    - exp: If True, plot the expectation value (average) of each bond length on the 2D histogram. Defaults to True.
+    - dists: List of two pairs of atom indices representing bonds (e.g., 
+    [[0, 1], [2, 3]]).
+    - exp: If True, plot the expectation value (average) of each bond length 
+    on the 2D histogram.
 
     Raises:
     - ValueError: If the molecule name is invalid, the atom indices exceed 
@@ -51,20 +55,14 @@ def plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True):
         num_atoms = 3
     else:
         raise ValueError('Not a valid molecule name')
-    
     # Validate the atom indices for each bond in dists
-    for d in range(len(dists)):
+    for d in enumerate(dists):
         for ind in dists[d]:
             if ind > num_atoms - 1:
                 raise ValueError('Atom index exceeds number of atoms in this molecule')
-            else:
-                pass
-
     # Ensure that 'dists' contains exactly two pairs of atom indices
     if len(dists) != 2:
         raise ValueError('"dists" must be a list of two pairs of atom indices')
-    else:
-        pass
     print(f"Creating plot two_d_dist for dists {dists} for {molecule}...")
 
     dist_vals = []
@@ -84,8 +82,10 @@ def plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True):
     sns.histplot(x=dist_vals[0], y=dist_vals[1],cbar=True)
 
     # Plot the expectation values as a point on the 2D plot
-    if exp==True:
-        plt.scatter(exp_vals[0],exp_vals[1], color='red',label='Exp. Vals.')
+    if exp:
+        plt.scatter(exp_vals[0],exp_vals[1],
+                    color='red',
+                    label='Exp. Vals.')
         plt.legend()
     else:
         pass
@@ -94,6 +94,5 @@ def plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True):
     plt.xlabel(rf'{dists[0][0]}{dists[0][1]} Distance ($\AA$)')
     plt.ylabel(rf'{dists[1][0]}{dists[1][1]} Distance ($\AA$)')
     plt.savefig(f'{molecule}_sim_{sim_num}_2d.png',bbox_inches='tight')
-    
     # Clear the current figure to avoid plot overlap
     plt.clf()

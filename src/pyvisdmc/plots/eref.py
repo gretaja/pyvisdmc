@@ -13,9 +13,11 @@ Dependencies:
 """
 import numpy as np
 import matplotlib
-matplotlib.use('Agg')  # Use a non-interactive backend
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+# Use a non-interactive backend
+matplotlib.use('Agg')
 
 # Set seaborn style
 sns.set_style("white")
@@ -44,8 +46,9 @@ def plot_eref(molecule,sim_num,sim_data,start,stop):
     vref = sim_data.get_vref(ret_cm=True)
 
     if stop > len(vref):
-        raise ValueError(f"The stop time {stop} exceeds the length of the available data ({len(vref)}).")
-    
+        raise ValueError(
+            f"The stop time {stop} exceeds the length of the available data ({len(vref)})."
+        )
     # Calculate the ZPE in the relevant range of time steps (while the energy is stable)
     zpe = np.mean(vref[start:stop][:, 1])
 
@@ -54,18 +57,16 @@ def plot_eref(molecule,sim_num,sim_data,start,stop):
 
     # Plot a horizontal line to indicate the calculated ZPE
     plt.hlines(y= zpe,
-               xmin = start,
-               xmax= stop, 
-               color = 'tab:orange', 
-               label='ZPE: {0:.2f}'.format(zpe))
+              xmin = start,
+              xmax= stop,
+              color = 'tab:orange',
+              label = f'ZPE:{zpe:.2f}') # changed to f-string format
     plt.legend()
 
     # Add axis labels
     plt.ylabel('Eref (cm$^{-1}$)')
     plt.xlabel('Timestep (1 a.u.)')
-    
     # Save the plot as a .png file
     plt.savefig(f'{molecule}_sim_{sim_num}_zpe.png',bbox_inches='tight')
-    
     # Clear the current figure to avoid plot overlap
     plt.clf()
