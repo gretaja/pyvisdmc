@@ -12,6 +12,7 @@ def parse_args():
     return parser.parse_args()
 
 def main():     
+    args = parse_args()
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
 
@@ -72,5 +73,5 @@ if __name__ == '__main__':
     print(pyvisdmc_art)
     print(pkg_description)
     print(f"Version {pkg_version}")
-    args = parse_args()
-    main(args)
+    
+    main()
