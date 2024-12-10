@@ -29,7 +29,7 @@ matplotlib.use('Agg')
 sns.set_style("white")
 
 #path to the folder containing the simulation data
-#path_to_data = '../data/h5o3_example_data/1.0w_50000_walkers_50000t_1dt'
+path_to_data = '../data/h5o3_example_data/1.0w_50000_walkers_50000t_1dt'
 
 def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
     """
