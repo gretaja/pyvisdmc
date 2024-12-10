@@ -29,7 +29,7 @@ def plot_eref(data_path,molecule,sim_num,walkers,timesteps,start,stop):
 
     path_to_data = f'{data_path}/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
     
-    print(f"Creating eref plot from file {path_to_data} from time {start} to time {stop}...")
+    print(f"Creating eref plot from time {start} to time {stop} for file {path_to_data}...")
     
     sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
 
