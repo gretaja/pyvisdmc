@@ -40,7 +40,9 @@ def plot_dist(data_path,molecule,sim_num,walkers,timesteps,start,stop,dist,hist=
 
     sim_data = pv.SimInfo(f'{path_to_data}/{name}_{sim_num}_sim_info.hdf5') #name of the simulation summary file
     snapshots = np.arange(start,stop,1000) #pull data every 1000 time steps from 10,000 to 50,000
-
+    
+    print(f"Creating plot one_dist for dist {dist} from file {path_to_data}...")
+    
     coords, weights = sim_data.get_wfns(snapshots) #load in the molecule geometries (coords) and their associated weights
     coords = pv.Constants.convert(coords,'angstroms',to_AU=False) # conversion of coordinates from atomic units to Angstroms (more common in chemistry)
 
