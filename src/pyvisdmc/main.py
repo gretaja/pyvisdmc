@@ -12,6 +12,29 @@ def parse_args():
     return parser.parse_args()
 
 def main():     
+    # loding package metadata
+    pkg_name = "PyVisDMC"  
+    pkg_meta = metadata(pkg_name)
+    pkg_version = version(pkg_name)
+    pkg_description = pkg_meta.get('Summary', 'No description available.')
+
+    pyvisdmc_art = r"""
+
+    O--O       O   O       O--O   O     O    O--O 
+    |   |      |   | o     |   \  |\   / |  /    
+    H--O  o  o O   O | o-o |    H | \ /  | H     
+    |     |  |  \ /  |  \  |   /  |  H   |  \    
+    O     o--H   H   | o-o O--O   O      O   O--O 
+             |                               
+          o--o                              
+
+    """
+    
+    # print the startup message
+    print(pyvisdmc_art)
+    print(pkg_description)
+    print(f"Version {pkg_version}")
+    
     args = parse_args()
     with open(args.config, 'r') as file:
         config = yaml.safe_load(file)
@@ -51,27 +74,4 @@ def main():
         print("")
 
 if __name__ == '__main__':
-    # loding package metadata
-    pkg_name = "PyVisDMC"  
-    pkg_meta = metadata(pkg_name)
-    pkg_version = version(pkg_name)
-    pkg_description = pkg_meta.get('Summary', 'No description available.')
-
-    pyvisdmc_art = r"""
-
-    O--O       O   O       O--O   O     O    O--O 
-    |   |      |   | o     |   \  |\   / |  /    
-    H--O  o  o O   O | o-o |    H | \ /  | H     
-    |     |  |  \ /  |  \  |   /  |  H   |  \    
-    O     o--H   H   | o-o O--O   O      O   O--O 
-             |                               
-          o--o                              
-
-    """
-    
-    # print the startup message
-    print(pyvisdmc_art)
-    print(pkg_description)
-    print(f"Version {pkg_version}")
-    
     main()
