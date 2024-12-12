@@ -10,10 +10,8 @@ Functions:
 - plot_dists: Creates and saves plots for multiple bond length distributions.
 
 Dependencies:
-- numpy, matplotlib, seaborn
+- matplotlib, seaborn
 """
-
-import numpy as np # unused import, shall we delete?
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -76,15 +74,18 @@ def plot_dists(molecule,sim_num,analyzer,weights,dists,hist=True,line=True,exp=T
         if line:
             for i in range(len(dist_vals)):
                 # Normalizes the distribution so the total probability is 1
-                sns.histplot(dist_vals[i], kde=True, bins=50, common_norm=True, label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
-                       f'{exp_vals[i]:.4f} $\\AA$')
+                sns.histplot(dist_vals[i], kde=True, bins=50, common_norm=True,
+                             label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+                            f'{exp_vals[i]:.4f} $\\AA$')
         else:
             for i in range(len(dist_vals)):
-                sns.histplot(dist_vals[i], kde=False, bins=50, common_norm = True, label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
-                       f'{exp_vals[i]:.4f} $\\AA$')
+                sns.histplot(dist_vals[i], kde=False, bins=50, common_norm = True,
+                             label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+                            f'{exp_vals[i]:.4f} $\\AA$')
     else:
         for i in range(len(dist_vals)):
-            sns.kdeplot(dist_vals[i],linewidth=2.5,label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
+            sns.kdeplot(dist_vals[i],linewidth=2.5,
+                        label=rf'$\langle$r{dists[i][0]}{dists[i][1]}$\rangle$ = '
                        f'{exp_vals[i]:.4f} $\\AA$')
     # If exp is true, plot vertical lines for expectation values
     if exp:

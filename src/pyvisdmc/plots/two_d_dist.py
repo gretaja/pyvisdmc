@@ -10,9 +10,8 @@ Functions:
 - plot_2d: Creates and saves a 2D histogram for two bond length distributions.
 
 Dependencies:
-- numpy, matplotlib, seaborn
+- matplotlib, seaborn
 """
-import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns

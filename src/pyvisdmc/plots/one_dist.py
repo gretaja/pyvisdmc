@@ -9,10 +9,8 @@ Functions:
 - plot_dist: Creates and saves a plot for a single bond length distribution.
 
 Dependencies:
-- numpy, matplotlib, seaborn
+- matplotlib, seaborn
 """
-
-import numpy as np # unused import, should we delete it?
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -64,9 +62,11 @@ def plot_dist(molecule,analyzer,weights,dist,hist=True,line=True,exp=True):
     if hist:
         if line:
             # Normalizes the distribution so the total probability is 1
-            sns.histplot(distance, kde=True, bins=50,label=rf'$\langle${dist[0]}{dist[1]}$\rangle$ = {exp_val:.4f} $\AA$')
+            sns.histplot(distance, kde=True, bins=50,
+                         label=rf'$\langle${dist[0]}{dist[1]}$\rangle$ = {exp_val:.4f} $\AA$')
         else:
-            sns.histplot(distance, kde=False, bins=50,label=rf'$\langle${dist[0]}{dist[1]}$\rangle$ = {exp_val:.4f} $\AA$')
+            sns.histplot(distance, kde=False, bins=50,
+                         label=rf'$\langle${dist[0]}{dist[1]}$\rangle$ = {exp_val:.4f} $\AA$')
     else:
         sns.kdeplot(distance,label=f'{dist[0]}{dist[1]}')
 
