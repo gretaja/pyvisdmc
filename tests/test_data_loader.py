@@ -6,7 +6,6 @@ import numpy as np
 
 import pyvibdmc as pv
 from pyvisdmc.utils import load_data, sim_info
-from pyvisdmc.test_data import DATA_PATH
 
 def test_smoke_load_data():
     """
@@ -16,8 +15,9 @@ def test_smoke_load_data():
     sim_num = 0
     walkers = 5000
     timesteps = 20000
+    data_path = 'src/pyvisdmc/test_data/'
 
-    load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+    load_data(data_path,molecule,sim_num,walkers,timesteps)
 
     return
 
@@ -25,14 +25,9 @@ def test_smoke_sim_info():
     """
     Simple smoke test to make sure sim_info runs.
     """
-    molecule = 'h2o'
-    sim_num = 0
-    walkers = 5000
-    timesteps = 20000
     start = 5000
     stop = 20000
-    
-    sim_data = load_data(DATA_PATH,molecule,sim_num,walkers,timesteps)
+    sim_data = pv.SimInfo('src/pyvisdmc/test_data/H2O_0_sim_info.hdf5')
 
     sim_info(sim_data,start,stop)
 
