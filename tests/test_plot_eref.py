@@ -7,6 +7,7 @@ import pytest
 import pyvibdmc as pv
 from pyvisdmc.plots import plot_eref
 
+
 def test_smoke():
     """
     Simple smoke test to make sure function runs.
@@ -18,7 +19,8 @@ def test_smoke():
 
     sim_data = pv.SimInfo('src/pyvisdmc/test_data/H2O_0_sim_info.hdf5')
 
-    plot_eref(molecule,sim_num,sim_data,start,stop)
+    plot_eref(molecule, sim_num, sim_data, start, stop)
+
 
 def test_stop_value():
     """
@@ -30,8 +32,9 @@ def test_stop_value():
     stop = 30000
 
     with pytest.raises(
-        ValueError, match=f"The stop time {stop} exceeds the length of the available data"
+        ValueError, match=
+        f'The stop time {stop} exceeds the length of the available data'
     ):
         sim_data = pv.SimInfo('src/pyvisdmc/test_data/H2O_0_sim_info.hdf5')
 
-        plot_eref(molecule,sim_num,sim_data,start,stop)
+        plot_eref(molecule, sim_num, sim_data, start, stop)
