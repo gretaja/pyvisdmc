@@ -6,7 +6,7 @@ Dependencies: h5py, matplotlib, numpy, pandas, pyvibdmc, PyYAML, seaborn
 
 This program was created at the University of Washington in fall 2024 as a final project for the course Software Development for Data Scientists (CSE 583). Team members on this project are acknowledged for their contributions below:
 
-* Greta Jacobson  
+* Greta Jacobson - chemical intuition and knowledge of PyVibDMC package, development of data loader and plotting functions, along with their corresponding test functions. 
 * Lauren Dressler  
 * Ramses Llobet
 
