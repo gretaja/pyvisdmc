@@ -14,6 +14,21 @@ def load_data(data_path,molecule,sim_num,walkers,timesteps):
 
     else:
         raise ValueError('Not a valid molecule name')
+    
+    if sim_num != 0:
+        raise ValueError(f'Simulation {sim_num} does not exist for this system')
+    else:
+        pass
+
+    if walkers != 5000:
+        raise ValueError(f'Simulation of size {walkers} walkers does not exist for this system')
+    else:
+        pass
+
+    if timesteps != 20000:
+        raise ValueError(f'Simulation of length {timesteps} timesteps does not exist for this system')
+    else:
+        pass
 
     path_to_data = f'{data_path}/{molecule}_example_data/1.0w_{walkers}_walkers_{timesteps}t_1dt' #path to the folder containing the simulation data
     
