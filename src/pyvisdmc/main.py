@@ -107,7 +107,7 @@ def main():
         print(f"two_d_dist plot saved as {molecule}_sim_{sim_num}_2d.png")
         print("")
     else:
-        raise ValueError("Provide argument 'plots' in config.yml")
+        print("No plots specified. Exiting successfully...")
 
 if __name__ == '__main__':
     main()
