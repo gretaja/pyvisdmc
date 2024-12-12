@@ -19,8 +19,18 @@ Roger has no Python experience and has heard a lecture on DMC theory.
 
 7. Rose is a 3rd year researcher in the McCoy group who develops neural network potential energy surfaces for the systems of interest. She wants to evaluate the performance of her neural net potentials in small and large scale DMC simulations by visualizing the convergence of energies and geometries across various simulations. In particular, she wants to be able to quickly identify when and where simulations crashed, and what geometries/energies led to this crash. She has multiple years of python and matplotlib experience, and would like the option to create highly specified visualizations.
 
-Example use case:
-Greta provides a path to the data and details about the system.
-PyVisDMC provides options for possible visualizations.
-Greta specifies atom indices, ranges of simulation time steps, number of dimensions, etc.
-PyVisDMC outputs a visualization.
+8. Yarra is a 3rd year graduate student in the McCoy group who doesn't work on DMC but has heard plenty of group meeting presentations about it. She's in charge of revising the McCoy group poster for prospective student visit weekend, and just needs to make an updated figure to replace an outdated one in the DMC section of the poster. She has multiple years of Python experience and is familiar with the functionalities of matplotlib. Her goal is to make a professional, poster-worthy figure showing multiple geometry distributions from one of the current systems we're studying in the group.
+
+9. Ryan is a past graduate student in the McCoy group who was the main developer of the simulation package PyVibDMC. He wants to help integrate his simulation software with this new visualization software. He is very familiar with DMC, Python, and software development. He hopes the variable names and language he used in PyVibDMC is consistent with PyVisDMC so that the integration goes smoothly and the learning curve is minimal.
+
+Example use cases:
+Greta provides a path to the data and details about a completed DMC simulation.
+Greta specifies that she wants a figure of the reference energy convergence to check to see if the simulation stabilized or crashed.
+PyVisDMC saves a .png of the reference energy value as a function of simulation timestep and calculates the average value to get an estimate of the system's zero point energy.
+From the figure, Greta realizes the simulation crashed about 80% of the way through, so she remakes the figure and only calculates the zero point energy from the stable range of the simulation.
+
+Hope provides a path to the data and details about a completed DMC simulation.
+Hope suspects something went wonky in this simulation that implemented a new guiding function, so they want a figure of KDE line plots and corresponding expectation values of both of the hydrogen bonded O-H distances to check if the distributions look the same as they did before implementing this change in the simulation code.
+
+Mickey provides a path to the data and details about a completed DMC simulation.
+He is using reduced-dimensional functions as guiding functions in the excited-state DMC simulations he's running on his system of interest. His calculated vibrational frequencies do not align with experimental values, so he's trying to determine if his reduced-dimentional function isn't accounting for all the correlated geometries in this system, and is therefore throwing the frequencies off. He specifies he wants a figure of the 2D histogram of one of the coordinates that is included in his reduced-dimensional model, and one of the coordinates he suspects may be coupled to it. The 2D histogram confirms there is a correlation between these quantities, and so he reworks his guiding function to account for this relationship.
