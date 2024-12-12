@@ -22,8 +22,6 @@ def test_smoke_default():
 
     plot_dists(molecule,sim_num,analyzer,weights,dists)
 
-    return
-
 def test_smoke_hist_false():
     """
     Simple smoke test to make sure function runs with histogram plotting off.
@@ -36,8 +34,6 @@ def test_smoke_hist_false():
     analyzer = pv.AnalyzeWfn(h2o_cds)
 
     plot_dists(molecule,sim_num,analyzer,weights,dists,hist=False)
-
-    return
 
 def test_smoke_line_false():
     """
@@ -52,8 +48,6 @@ def test_smoke_line_false():
 
     plot_dists(molecule,sim_num,analyzer,weights,dists,line=False)
 
-    return
-
 def test_smoke_exp_false():
     """
     Simple smoke test to make sure function runs with expectation value plotting off.
@@ -66,8 +60,6 @@ def test_smoke_exp_false():
     analyzer = pv.AnalyzeWfn(h2o_cds)
 
     plot_dists(molecule,sim_num,analyzer,weights,dists,exp=False)
-
-    return
 
 def test_atom_indices():
     """
@@ -84,6 +76,3 @@ def test_atom_indices():
         analyzer = pv.AnalyzeWfn(h2o_cds)
 
         plot_dists(molecule,sim_num,analyzer,weights,dists)
-
-    return 
-

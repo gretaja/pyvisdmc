@@ -3,7 +3,6 @@ Tests for the plot_eref function
 """
 
 import pytest
-import numpy as np
 
 import pyvibdmc as pv
 from pyvisdmc.plots import plot_eref
@@ -21,8 +20,6 @@ def test_smoke():
 
     plot_eref(molecule,sim_num,sim_data,start,stop)
 
-    return
-
 def test_stop_value():
     """
     Edge test for stop value exeeding length of simulation
@@ -38,6 +35,3 @@ def test_stop_value():
         sim_data = pv.SimInfo('src/pyvisdmc/test_data/H2O_0_sim_info.hdf5')
 
         plot_eref(molecule,sim_num,sim_data,start,stop)
-
-    return 
-

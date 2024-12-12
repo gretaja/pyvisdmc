@@ -23,8 +23,6 @@ def test_smoke_default():
 
     plot_2d(molecule,sim_num,analyzer,weights,dists,exp=True)
 
-    return
-
 
 def test_smoke_exp_false():
     """
@@ -38,8 +36,6 @@ def test_smoke_exp_false():
     analyzer = pv.AnalyzeWfn(h2o_cds)
 
     plot_2d(molecule,sim_num,analyzer,weights,dists,exp=False)
-
-    return
 
 def test_atom_indices():
     """
@@ -57,8 +53,6 @@ def test_atom_indices():
 
         plot_2d(molecule,sim_num,analyzer,weights,dists)
 
-    return 
-
 def test_dists_shape():
     """
     Edge test for dists not being a list of size 2
@@ -74,6 +68,3 @@ def test_dists_shape():
         analyzer = pv.AnalyzeWfn(h2o_cds)
 
         plot_2d(molecule,sim_num,analyzer,weights,dists)
-
-    return
-

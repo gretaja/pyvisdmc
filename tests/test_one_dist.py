@@ -6,9 +6,7 @@ import pytest
 import numpy as np
 
 import pyvibdmc as pv
-
 from pyvisdmc.plots import plot_dist
-#from pyvisdmc.test_data import DATA_PATH
 
 def test_smoke_default():
     """
@@ -22,8 +20,6 @@ def test_smoke_default():
 
     plot_dist(molecule,analyzer,weights,dist)
 
-    return
-
 def test_smoke_hist_false():
     """
     Simple smoke test to make sure function runs with histogram plotting off.
@@ -35,8 +31,6 @@ def test_smoke_hist_false():
     analyzer = pv.AnalyzeWfn(h2o_cds)
 
     plot_dist(molecule,analyzer,weights,dist,hist=False)
-
-    return
 
 def test_smoke_line_false():
     """
@@ -50,8 +44,6 @@ def test_smoke_line_false():
 
     plot_dist(molecule,analyzer,weights,dist,line=False)
 
-    return
-
 def test_smoke_exp_false():
     """
     Simple smoke test to make sure function runs with expectation value plotting off.
@@ -63,8 +55,6 @@ def test_smoke_exp_false():
     analyzer = pv.AnalyzeWfn(h2o_cds)
 
     plot_dist(molecule,analyzer,weights,dist,exp=False)
-
-    return
 
 def test_atom_indices():
     """
@@ -80,6 +70,3 @@ def test_atom_indices():
         analyzer = pv.AnalyzeWfn(h2o_cds)
 
         plot_dist(molecule,analyzer,weights,dist)
-
-    return 
-
