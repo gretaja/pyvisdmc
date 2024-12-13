@@ -76,51 +76,145 @@ def test_invalid_data_path(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode != 0, "Expected failure due to invalid data_path."
-    assert "Provided data_path 'path/that/does/not/exist' is not a valid directory." in result.stderr
+    assert f"Check config.yml. Provided data_path path/that/does/not/exist is not a valid directory." in result.stderr
 
-    
-def test_neg_start_stop(tmp_path):
+def test_non_int_sim_num(tmp_path):
     """
-    Edge test to see if the correct ValueError is raised when a negative start/stop time is given.
+    Edge test for sim_num not an integer.
     """
     config = {
         'data_path': 'src/pyvisdmc/test_data',
         'molecule': 'h5o3',
-        'sim_num': 0,
-        'walkers': 5000,
-        'timesteps': 20000,
-        'start': -10000,
-        'stop': 20000,
-        'plots': ['eref']
-    }
-    config_file = tmp_path / "config.yaml"
-    with config_file.open('w') as f:
-        yaml.dump(config, f)
-
-    result = run_main(config_file)
-    assert result.returncode != 0, "Should fail due to negative start time."
-    assert "Check config.yml. Start and stop must be non-negative." in result.stderr, "Expected error message about neg value."
-
-def test_missing_key(tmp_path):
-    """
-    Edge test to see if the correct ValueError is raised when we remove a required key ('molecule').
-    """
-    config = {
-        'data_path': 'src/pyvisdmc/test_data',
-        'sim_num': 0,
+        'sim_num': "zero",  # non-integer
         'walkers': 5000,
         'timesteps': 20000,
         'start': 10000,
         'stop': 20000,
         'plots': ['eref']
     }
-    config_file = tmp_path / "config.yaml"
+    config_file = tmp_path / "non_int_sim_num_config.yaml"
     with config_file.open('w') as f:
         yaml.dump(config, f)
 
     result = run_main(config_file)
-    assert result.returncode != 0, "Should fail due to missing key."
-    assert "Missing required key 'molecule'" in result.stderr, "Expected error message about missing key."
+    assert result.returncode != 0
+    assert "Check config.yml. Simulation number must be a non-negative integer." in result.stderr
+
+
+def test_negative_sim_num(tmp_path):
+    """
+    Edge test for nonsense sim number.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': -1,  # negative
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "negative_sim_num_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. Simulation number must be a non-negative integer." in result.stderr
+
+
+def test_zero_walkers(tmp_path):
+    """
+    Edge test for walkers not positive.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 0,  # zero walkers
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "zero_walkers_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. The number of walkers must be a positive integer." in result.stderr
+
+
+def test_non_int_walkers(tmp_path):
+    """
+    Edge test for walkers not an integer.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000.5,  # non-integer
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "non_int_walkers_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. The number of walkers must be a positive integer." in result.stderr
+
+
+def test_zero_timesteps(tmp_path):
+    """
+    Edge test for timesteps not positive.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 0,  # zero timesteps
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "zero_timesteps_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. The number of timesteps must be a positive integer." in result.stderr
+
+
+def test_non_int_timesteps(tmp_path):
+    """
+    Edge test for timesteps not an integer.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': "twenty_thousand",  # non-integer
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "non_int_timesteps_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. The number of timesteps must be a positive integer." in result.stderr
+    
 
 def test_start_greater_than_stop(tmp_path):
     """
@@ -144,6 +238,30 @@ def test_start_greater_than_stop(tmp_path):
     assert result.returncode != 0, "Should fail because start > stop."
     assert "Check config.yml. Start timestep 15000 cannot be greater than stop timestep 10000" in result.stderr
 
+
+def test_start_exceeds_timesteps(tmp_path):
+    """
+    Edge test for start > timesteps.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 25000,  # start > timesteps
+        'stop': 30000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "start_exceeds_timesteps_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. Start timestep 25000 or stop timestep 30000 exceed total timesteps 20000." in result.stderr
+
+
 def test_stop_exceeds_timesteps(tmp_path):
     """
     Edge test to check that stop > timesteps raises a ValueError.
@@ -164,7 +282,168 @@ def test_stop_exceeds_timesteps(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode != 0, "Should fail because stop > timesteps."
-    assert "Check config.yml. Stop timestep 30000 exceeds the total timesteps 20000" in result.stderr
+    assert "Check config.yml. Start timestep 10000 or stop timestep 30000 exceed total timesteps 20000." in result.stderr
+
+
+def test_non_int_start(tmp_path):
+    """
+    Edge test for start not an integer.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000.5,  # non-integer
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "non_int_start_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. Start and stop must be non-negative integers." in result.stderr
+
+
+def test_non_int_stop(tmp_path):
+    """
+    Edge test for stop not an integer.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': "twenty_thousand",  # non-integer
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "non_int_stop_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. Start and stop must be non-negative integers." in result.stderr
+
+
+def test_neg_start_stop(tmp_path):
+    """
+    Edge test to see if the correct ValueError is raised when a negative start/stop time is given.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': -10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0, "Should fail due to negative start time."
+    assert "Check config.yml. Start and stop must be non-negative integers." in result.stderr
+
+
+def test_plots_not_a_list(tmp_path):
+    """
+    Edge test for plot argument as a string instead of a list.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': 'eref'  # not a list
+    }
+    config_file = tmp_path / "plots_not_a_list.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. Plots must be a list of strings." in result.stderr
+
+
+def test_plots_not_strings(tmp_path):
+    """
+    Edge test for plot list with a non-string element.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref', 123]  # non-string element
+    }
+    config_file = tmp_path / "plots_not_strings.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0
+    assert "Check config.yml. Plots must be a list of strings." in result.stderr
+
+
+def test_no_plots_specified(tmp_path):
+    """
+    Edge test for case when no plots are specified.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': []  # empty list
+    }
+    config_file = tmp_path / "no_plots_config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode == 0, "No plots scenario is considered success, so check exit message accordingly."
+    assert "No plots specified." in result.stderr
+
+    
+def test_missing_key(tmp_path):
+    """
+    Edge test to see if the correct ValueError is raised when we remove a required key ('molecule').
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': 10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0, "Should fail due to missing key."
+    assert "Missing required key 'molecule'" in result.stderr, "Expected error message about missing key."
+
 
 def test_invalid_dist_for_one_dist(tmp_path):
     """
