@@ -76,7 +76,7 @@ def test_invalid_data_path(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode != 0, "Expected failure due to invalid data_path."
-    assert f"Check config.yml. Provided data_path path/that/does/not/exist is not a valid directory." in result.stderr
+    assert f"Check config.yml. Provided data_path 'path/that/does/not/exist' is not a valid directory." in result.stderr
 
 def test_non_int_sim_num(tmp_path):
     """
@@ -420,7 +420,7 @@ def test_no_plots_specified(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode == 0, "No plots scenario is considered success, so check exit message accordingly."
-    assert "No plots specified." in result.stderr
+    assert "No plots specified. Exiting successfully..." in result.stdout
 
     
 def test_missing_key(tmp_path):
