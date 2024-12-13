@@ -54,10 +54,6 @@ def main():
     plots = config['plots']
 
     # edge checks
-    if not os.path.isdir(data_path):
-        raise ValueError(f"Provided data_path '{data_path}' is not a valid directory.")
-    else:
-        pass
     if start < 0 or stop < 0:
         raise ValueError("Check config.yml. Start and stop must be non-negative.")
     else:
@@ -70,17 +66,7 @@ def main():
         raise ValueError(f"Check config.yml. Stop timestep {stop} exceeds the total timesteps {timesteps}.")
     else:
         pass
-    if not isinstance(plots, list) or not all(isinstance(p, str) for p in plots):
-        raise ValueError("plots must be a list of strings.")
-    else:
-        pass
-    allowed_plots = ['eref', 'one_dist', 'mult_dist', 'two_d_dist']
-    for p in plots:
-        if p not in allowed_plots:
-            print(f"Warning: plot '{p}' is not built-in. Supported plot types: {allowed_plots}")
-        else:
-            pass
-            
+
     print("")
     print(f"Molecule: {molecule}")
     print(f"Analyzing {walkers} walkers over {timesteps} timesteps...")
