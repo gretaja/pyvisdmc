@@ -86,7 +86,7 @@ If the data cannot be loaded (e.g., missing files, wrong parameters), raises a `
 ## **`eref` Plot Component (eref.py)**
 
 **What it does:**  
-Generates a line plot of the reference energy of the ensemble over the given time range, and calculates the zero-point energy (ZPE) based on user-specified start and stop timesteps. This plot provides insight into the energy convergence behavior of the DMC simulation.
+Generates a line plot of the average energy of the ensemble over the given time range and calculates the zero-point energy (ZPE) based on user-specified start and stop timesteps. This is a quick way to understand the energy convergence behavior of the DMC simulation.
 
 **Inputs:**
 
@@ -103,7 +103,7 @@ Generates a line plot of the reference energy of the ensemble over the given tim
 
 * Main script (`main.py`): calls `plot_eref` after loading and validating data  
 * Data loader (`data_loader.py`): provides the `sim_data` object containing energy values  
-* Data validation is handled by testing functions that raise errors in the user input fields before `plot_eref` executes
+* Data validation is handled by testing functions that raise errors in the user inputs before `plot_eref` executes
 
 **Side Effects:**
 
@@ -144,7 +144,7 @@ Creates a histogram of a single bond length distribution from the simulation dat
 ## **`mult_dist` Plot Component (mult\_dist.py)**
 
 **What it does:**  
-Generates multiple histograms for several specified bond lengths simultaneously, allowing the user to compare distributions of different bonds within the same simulation.
+Generates multiple histograms for several specified bond lengths simultaneously, allowing the user to compare distributions of different bonds within the same simulation. (Essentially, this is just multiple one_dist plots on top of each other.)
 
 **Inputs:**
 
@@ -160,21 +160,21 @@ Generates multiple histograms for several specified bond lengths simultaneously,
 **Talks to:**
 
 * Main script (`main.py`) and data loader (`data_loader.py`)  
-* Again, pre-execution tests check:  
+* Again, pre-execution tests check
   * that `mult_dists` is provided and each element is a pair of integers  
   * that the simulation data contains all requested atom indices  
 * Invalid parameters or missing data fields cause test functions to fail, preventing the plot from running.
 
 **Side Effects:**
 
-* Successful execution saves a `.png` file and prints a confirmation message.
+* On success, saves a `.png` file and prints a confirmation message.
 
 ---
 
 ## **`two_d_dist` Plot Component (two\_d\_dist.py)**
 
 **What it does:**  
-Creates a 2D probability plot comparing two different sets of bond lengths.
+Creates a 2D probability plot comparing two different sets of bond lengths. The x and y axes each correspond to a single set of bonds, and the probability of finding yourself at a given location in the xy-plane is mapped as a color bar.
 
 **Inputs:**
 
@@ -198,6 +198,3 @@ Creates a 2D probability plot comparing two different sets of bond lengths.
 **Side Effects:**
 
 * On success, saves a `.png` file and prints a success message.
-
-
-
