@@ -155,8 +155,8 @@ def test_one_shot_known_values(tmp_path):
         'sim_num': 0,
         'walkers': 5000,
         'timesteps': 20000,
-        'start': 0,
-        'stop': 10000,
+        'start': 12000,
+        'stop': 19000,
         'plots': ['eref'],
     }
     config_file = tmp_path / "config.yaml"
@@ -210,7 +210,7 @@ def test_pattern_multiple_runs(tmp_path):
 
     for stop_val in [11000, 12000, 13000, 14000, 15000, 16000, 17000, 18000, 19000, 20000]:
         cfg = base_config.copy()
-        cfg['start'] = 0
+        cfg['start'] = 10000
         cfg['stop'] = stop_val
 
         config_file = tmp_path / f"config_{stop_val}.yaml"
