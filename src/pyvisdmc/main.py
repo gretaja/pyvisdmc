@@ -54,6 +54,10 @@ def main():
     plots = config['plots']
 
     # edge checks
+    if not os.path.isdir(data_path):
+        raise ValueError(f"Provided data_path '{data_path}' is not a valid directory.")
+    else:
+        pass
     if start < 0 or stop < 0:
         raise ValueError("Check config.yml. Start and stop must be non-negative.")
     else:
