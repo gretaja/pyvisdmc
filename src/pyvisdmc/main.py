@@ -94,7 +94,7 @@ def main():
     default_plots = ['eref', 'one_dist', 'mult_dist', 'two_d_dist']
     for p in plots:
         if p not in default_plots:
-            print(f"Warning: plot '{p}' is not built in. Supported plot types: {allowed_plots}")
+            print(f"Warning: plot '{p}' is not built in. Supported plot types: {default_plots}")
 
 
     print("")
