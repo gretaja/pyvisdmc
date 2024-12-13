@@ -138,7 +138,7 @@ If the merge is successful, run `git push` to update your forked repository.
 If you have a unique visualization need, you can add your own plotting functions by following the steps below.
 
 1. **Create a New Plot Function**:  
-   * Inside `src/pyvisdmc/plots/`, create a new Python file called your-plot-name.py. For example, say you wanted a plot called `custom_plot`:
+* Inside `src/pyvisdmc/plots/`, create a new Python file called your-plot-name.py. For example, say you wanted a plot called `custom_plot`:
 
 ```python   
 # in src/pyvisdmc/plots/custom_plot.py, write your code
@@ -154,7 +154,7 @@ def plot_custom(data_path,...):
 ```
 
 2. **Registering Your Plot in `main.py`**:
-   * Import your new plotting function in `main.py` by adding:  
+* Import your new plotting function in `main.py` by adding:  
  
 ```python
 from pyvisdmc.plots.custom_plot import plot_custom
