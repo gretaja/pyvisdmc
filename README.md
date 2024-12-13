@@ -27,8 +27,11 @@ This program was created at the University of Washington in fall 2024 as a final
     <img src="doc/one_dist_example.png" alt="One dist plot" width="300px"/>
   * **mult_dist**: Probability distributions of multiple bond lengths simultaneously.  
     <img src="doc/mult_dist_example.png" alt="Mult dist plot" width="300px"/>
+    
   * **two_d_dist**: A 2D probability distribution plot comparing two different bond lengths.
+  * 
     <img src="doc/two_d_dist_example.png" alt="Two d dist plot" width="300px"/>
+    
     
 #### - Command-Line Usability:  
   * Run `pyvisdmc config.yaml` from the command line to generate all requested plots at once  
