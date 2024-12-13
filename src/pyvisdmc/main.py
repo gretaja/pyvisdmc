@@ -58,26 +58,6 @@ def main():
         raise ValueError(f"Provided data_path '{data_path}' is not a valid directory.")
     else:
         pass
-    if not isinstance(sim_num, int) or sim_num < 0:
-        raise ValueError("Simulation number must be a non-negative integer.")
-    else:
-        pass
-    if not isinstance(walkers, int) or walkers <= 0:
-        raise ValueError("The number of walkers must be a positive integer.")
-    else:
-        pass
-    if not isinstance(timesteps, int) or timesteps <= 0:
-        raise ValueError("The number of timesteps must be a positive integer.")
-    else:
-        pass
-    if not isinstance(start, int):
-        raise ValueError("start must be an integer.")
-    else:
-        pass
-    if start > timesteps:
-        raise ValueError(f"start ({start}) must not exceed timesteps ({timesteps}).")
-    else:
-        pass
     if start < 0 or stop < 0:
         raise ValueError("Check config.yml. Start and stop must be non-negative.")
     else:
@@ -85,10 +65,6 @@ def main():
     if start > stop:
         raise ValueError(f"Check config.yml. Start timestep {start} cannot be greater than stop timestep {stop}.")
     else:
-        pass
-    if not isinstance(stop, int):
-        raise ValueError("stop must be an integer.")
-    else: 
         pass
     if stop > timesteps:
         raise ValueError(f"Check config.yml. Stop timestep {stop} exceeds the total timesteps {timesteps}.")
