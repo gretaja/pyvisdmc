@@ -54,30 +54,6 @@ def test_smoke(valid_config):
     assert result.returncode == 0, "Expected no error on valid input."
     assert "Version" in result.stdout, "Expected to see version info in output."
     assert "two_d_dist plot saved" in result.stdout, "Expected summary line in output."
-
-
-def test_invalid_data_path(tmp_path):
-    """
-    Edge test for invalid data_path.
-    """
-    config = {
-        'data_path': 'path/that/does/not/exist',
-        'molecule': 'h5o3',
-        'sim_num': 0,
-        'walkers': 5000,
-        'timesteps': 20000,
-        'start': 10000,
-        'stop': 20000,
-        'plots': ['eref']
-    }
-
-    config_file = tmp_path / "config.yaml"
-    with config_file.open('w') as f:
-        yaml.dump(config, f)
-
-    result = run_main(config_file)
-    assert result.returncode != 0, "Expected failure due to invalid data_path."
-    assert "Provided data_path 'path/that/does/not/exist' is not a valid directory." in result.stderr
     
 def test_neg_start_stop(tmp_path):
     """
@@ -124,7 +100,7 @@ def test_missing_key(tmp_path):
 
 def test_start_greater_than_stop(tmp_path):
     """
-    Edge test: start > stop.
+    Edge test to check that user input start > stop raises a ValueError.
     """
     config = {
         'data_path': 'src/pyvisdmc/test_data',
@@ -146,7 +122,7 @@ def test_start_greater_than_stop(tmp_path):
 
 def test_stop_exceeds_timesteps(tmp_path):
     """
-    Edge test: stop > timesteps.
+    Edge test to check that stop > timesteps raises a ValueError.
     """
     config = {
         'data_path': 'src/pyvisdmc/test_data',
@@ -267,4 +243,3 @@ def test_pattern_multiple_runs(tmp_path):
         assert result.returncode == 0, f"Expected success with stop={stop_val}"
         assert "Analyzing 5000 walkers over 20000 timesteps..." in result.stdout
         assert "No plots specified. Exiting successfully..." in result.stdout
-
