@@ -76,8 +76,7 @@ def main():
     else: 
         pass
     if start > timesteps or stop > timesteps:
-        raise ValueError(f"Check config.yml. 
-        Start timestep {start} or stop timestep {stop} exceed total timesteps {timesteps}.")
+        raise ValueError(f"Check config.yml. Start timestep {start} or stop timestep {stop} exceed total timesteps {timesteps}.")
     else:
         pass
     if start < 0 or stop < 0:
