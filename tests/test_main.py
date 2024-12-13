@@ -155,8 +155,8 @@ def test_one_shot_known_values(tmp_path):
         'sim_num': 0,
         'walkers': 5000,
         'timesteps': 20000,
-        'start': 1000,
-        'stop': 2000,
+        'start': 0,
+        'stop': 5000,
         'plots': ['eref'],
     }
     config_file = tmp_path / "config.yaml"
