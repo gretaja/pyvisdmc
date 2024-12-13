@@ -83,6 +83,8 @@ main script and plotting components
 **Side effects:**  
 If the data cannot be loaded (e.g., missing files, wrong parameters), raises a `ValueError` which `main.py` reports to the user.
 
+---
+
 ## **`eref` Plot Component (eref.py)**
 
 **What it does:**  
