@@ -70,13 +70,13 @@ pyvisdmc config.yaml
 
 Your `config.yaml` file must contain the following required keys:
 
-* **data_path**: Path to the folder containing the PyVibDMC simulation data on your computer.  
-* **molecule**: The name of the molecule simulated (e.g., `h2o`, `h5o3`).  
-* **sim_num**: The simulation number as saved in the data folder  
-* **walkers**: The number of walkers that were used in the PyVibDMC simulation.  
-* **timesteps**: The total number of timesteps simulated.  
-* **start** and **stop**: The range of timesteps for analysis and plotting. Ensure `start < stop` and both are within the total timesteps.  
-* **plots**: A list of plots to generate. Built-ins: `eref`, `one_dist`, `mult_dist`, `two_d_dist`.
+* **`data_path`**: Path to the folder containing the PyVibDMC simulation data on your computer.  
+* **`molecule`**: The name of the molecule simulated (e.g., `h2o`, `h5o3`).  
+* **`sim_num`**: The simulation number as saved in the data folder  
+* **`walkers`**: The number of walkers that were used in the PyVibDMC simulation.  
+* **`timesteps`**: The total number of timesteps simulated.  
+* **`start`** and **stop**: The range of timesteps for analysis and plotting. Ensure `start < stop` and both are within the total timesteps.  
+* **`plots`**: A list of plots to generate. Built-ins: `eref`, `one_dist`, `mult_dist`, `two_d_dist`.
 
 For certain plots, additional arguments are required:
 
