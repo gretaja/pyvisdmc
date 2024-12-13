@@ -21,11 +21,16 @@ This program was created at the University of Washington in fall 2024 as a final
 #### - Plot Selection via Configuration File:  
   Specify the plot types (e.g., `eref`, `one_dist`) directly in a YAML config file rather than modifying code.  
 #### - Set of Built-In Plot Types:  
-  * **eref**: Average ensemble energy over time, including calculation of the zero-point energy (ZPE) over specified start/stop points.  
+  * **eref**: Average ensemble energy over time, including calculation of the zero-point energy (ZPE) over specified start/stop points.
+
     <img src="doc/eref_example.png" alt="Eref plot" width="300px"/>
-  * **one_dist**: Probability distribution of a single bond length.  
+  
+  * **one_dist**: Probability distribution of a single bond length.
+
     <img src="doc/one_dist_example.png" alt="One dist plot" width="300px"/>
-  * **mult_dist**: Probability distributions of multiple bond lengths simultaneously.  
+    
+  * **mult_dist**: Probability distributions of multiple bond lengths simultaneously.
+      
     <img src="doc/mult_dist_example.png" alt="Mult dist plot" width="300px"/>
     
   * **two_d_dist**: A 2D probability distribution plot comparing two different bond lengths.
