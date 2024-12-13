@@ -138,9 +138,8 @@ If the merge is successful, run `git push` to update your forked repository.
 If you have a unique visualization need, you can add your own plotting functions by following the steps below.
 
 1. **Create a New Plot Function**:  
-   * Inside `src/pyvisdmc/plots/`, create a new Python file called your-plot-name.py.
+   * Inside `src/pyvisdmc/plots/`, create a new Python file called your-plot-name.py. For example, say you wanted a plot called `custom_plot`:
 
-For example, say you wanted a plot called `custom_plot`:  
 ```python   
 # in src/pyvisdmc/plots/custom_plot.py, write your code
 import matplotlib.pyplot as plt
@@ -154,30 +153,26 @@ def plot_custom(data_path,...):
   plt.clf()
 ```
 
-*   
 2. **Registering Your Plot in `main.py`**:
-
-Import your new plotting function in `main.py` by adding:  
+   * Import your new plotting function in `main.py` by adding:  
  
 ```python
 from pyvisdmc.plots.custom_plot import plot_custom
 ```
-*
 
-Decide on a plot name (e.g., `custom`) and add a condition to handle it:  
+   * Decide on a plot name (e.g., `custom`) and add a condition to handle it:  
 ```python
 if 'custom' in plots:
   plot_custom(data_path,...)
   print(f"custom plot saved as {molecule}_sim_{sim_num}_custom_plot.png")
   print("")
 ```
-* 
 
-Add any required arguments to your `config.yaml` and retrieve them in `main.py` if needed. For example, if `custom` needs a parameter `my_param`, your `config.yml` needs to contain:
+   * Add any required arguments to your `config.yaml` and retrieve them in `main.py` if needed. For example, if `custom` needs a parameter `my_param`, your `config.yml` needs to contain:
 ```yaml
 my_param: input
 ```
-And your condition in `main.py` should contain:
+   * If you have any additional parameters, your condition in `main.py` should contain:
 ```python  
 my_param = config.get('my_param')
 ```
