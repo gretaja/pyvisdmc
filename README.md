@@ -108,7 +108,7 @@ mult_dists: [[2,3],[2,4],[2,0]]
 ```
 ---
 
-## **How to Contribute**
+# **How to Contribute**
 
 **Fork the PyVisDMC Repository** on GitHub:
 
@@ -133,7 +133,7 @@ If the merge is successful, run `git push` to update your forked repository.
 
 ---
 
-## **Adding Your Own Plotting Functions**
+# **Adding Your Own Plotting Functions**
 
 If you have a unique visualization need, you can add your own plotting functions by following the steps below.
 
