@@ -85,7 +85,7 @@ If the data cannot be loaded (e.g., missing files, wrong parameters), raises a `
 
 ---
 
-## **`eref` Plot Component (eref.py)**
+## **`eref` plot generator (eref.py)**
 
 **What it does:**  
 Generates a line plot of the average energy of the ensemble over the given time range and calculates the zero-point energy (ZPE) based on user-specified start and stop timesteps. This is a quick way to understand the energy convergence behavior of the DMC simulation.
@@ -113,7 +113,7 @@ Generates a line plot of the average energy of the ensemble over the given time 
 
 ---
 
-## **`one_dist` Plot Component (one\_dist.py)**
+## **`one_dist` plot generator (one_dist.py)**
 
 **What it does:**  
 Creates a histogram of a single bond length distribution from the simulation data. This helps the user understand the probability distribution of a specific atomic pair’s distance.
@@ -143,7 +143,7 @@ Creates a histogram of a single bond length distribution from the simulation dat
 
 ---
 
-## **`mult_dist` Plot Component (mult\_dist.py)**
+## **`mult_dist` plot generator (mult_dist.py)**
 
 **What it does:**  
 Generates multiple histograms for several specified bond lengths simultaneously, allowing the user to compare distributions of different bonds within the same simulation. (Essentially, this is just multiple one_dist plots on top of each other.)
@@ -173,7 +173,7 @@ Generates multiple histograms for several specified bond lengths simultaneously,
 
 ---
 
-## **`two_d_dist` Plot Component (two\_d\_dist.py)**
+## **`two_d_dist` plot generator (two_d_dist.py)**
 
 **What it does:**  
 Creates a 2D probability plot comparing two different sets of bond lengths. The x and y axes each correspond to a single set of bonds, and the probability of finding yourself at a given location in the xy-plane is mapped as a color bar.
