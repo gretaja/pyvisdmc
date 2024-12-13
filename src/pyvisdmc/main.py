@@ -1,5 +1,6 @@
 import argparse
 import yaml
+import os
 from importlib.metadata import metadata, version
 from pyvisdmc.plots.eref import plot_eref
 from pyvisdmc.plots.one_dist import plot_dist
