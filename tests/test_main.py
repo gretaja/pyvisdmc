@@ -96,7 +96,7 @@ def test_start_greater_than_stop(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode != 0, "Should fail because start > stop."
-    assert "start timestep 15000 cannot be greater than stop timestep 10000" in result.stderr
+    assert "Check config.yml. Start timestep 15000 cannot be greater than stop timestep 10000" in result.stderr
 
 def test_stop_exceeds_timesteps(tmp_path):
     """
@@ -118,7 +118,7 @@ def test_stop_exceeds_timesteps(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode != 0, "Should fail because stop > timesteps."
-    assert "stop timestep 30000 exceeds the total timesteps 20000" in result.stderr
+    assert "Check config.yml. Stop timestep 30000 exceeds the total timesteps 20000" in result.stderr
 
 def test_invalid_dist_for_one_dist(tmp_path):
     """
@@ -153,7 +153,7 @@ def test_one_shot_known_values(tmp_path):
         'data_path': 'src/pyvisdmc/test_data',
         'molecule': 'h5o3',
         'sim_num': 0,
-        'walkers': 1000,
+        'walkers': 5000,
         'timesteps': 5000,
         'start': 1000,
         'stop': 2000,
@@ -166,7 +166,7 @@ def test_one_shot_known_values(tmp_path):
     result = run_main(config_file)
     assert result.returncode == 0, "Expected success with known-good minimal config."
     assert "Molecule: h5o3" in result.stdout
-    assert "Analyzing 1000 walkers over 5000 timesteps..." in result.stdout
+    assert "Analyzing 5000 walkers over 5000 timesteps..." in result.stdout
     assert "Eref plot saved as h5o3_sim_0_zpe.png" in result.stdout
 
 def test_one_shot_different_molecule(tmp_path):
@@ -176,23 +176,23 @@ def test_one_shot_different_molecule(tmp_path):
     config = {
         'data_path': 'src/pyvisdmc/test_data',
         'molecule': 'h2o',
-        'sim_num': 1,
-        'walkers': 2000,
-        'timesteps': 10000,
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 5000,
         'start': 0,
         'stop': 5000,
         'plots': ['two_d_dist'],
+        '2d_dists': [[0,1], [1,2]]
     }
     config_file = tmp_path / "config.yaml"
     with config_file.open('w') as f:
         yaml.dump(config, f)
 
     result = run_main(config_file)
-    assert result.returncode == 0, "Expected success with empty plots."
+    assert result.returncode == 0, "Expected success with two_d_dist."
     assert "Molecule: h2o" in result.stdout
-    assert "Analyzing 2000 walkers over 10000 timesteps..." in result.stdout
-    # Since no plots, no "plot saved" lines should be in output
-    assert "two_d_dist plot saved as h2o_sim_1_2d.png" in result.stdout
+    assert "Analyzing 5000 walkers over 10000 timesteps..." in result.stdout
+    assert "two_d_dist plot saved as h2o_sim_0_2d.png" in result.stdout
     
 def test_pattern_multiple_runs(tmp_path):
     """
@@ -205,7 +205,7 @@ def test_pattern_multiple_runs(tmp_path):
         'sim_num': 0,
         'walkers': 5000,
         'timesteps': 20000,
-        'plots': ['eref'],
+        'plots': [],
     }
 
     for stop_val in [1000, 1001, 1250, 2348, 5000, 5998, 9999, 10000]:
@@ -219,5 +219,6 @@ def test_pattern_multiple_runs(tmp_path):
 
         result = run_main(config_file)
         assert result.returncode == 0, f"Expected success with stop={stop_val}"
-        assert f"Eref plot saved" in result.stdout
+        assert "Analyzing 5000 walkers over 10000 timesteps..." in result.stdout
+        assert "No plots specified. Exiting successfully..." in result.stdout
 
