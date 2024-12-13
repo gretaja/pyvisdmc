@@ -103,7 +103,7 @@ plots:
   - two_d_dist
 
 dist: [0,1]
-mult_dists: [[2,3], [2,4], [2,0]]
+mult_dists: [[2,3],[2,4],[2,0]]
 2d_dists: [[2,3],[5,6]]
 ```
 ---
