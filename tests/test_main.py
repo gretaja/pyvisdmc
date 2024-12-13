@@ -54,6 +54,28 @@ def test_smoke(valid_config):
     assert result.returncode == 0, "Expected no error on valid input."
     assert "Version" in result.stdout, "Expected to see version info in output."
     assert "two_d_dist plot saved" in result.stdout, "Expected summary line in output."
+    
+def test_neg_start_stop(tmp_path):
+    """
+    Edge test to see if the correct ValueError is raised when a negative start/stop time is given.
+    """
+    config = {
+        'data_path': 'src/pyvisdmc/test_data',
+        'molecule': 'h5o3',
+        'sim_num': 0,
+        'walkers': 5000,
+        'timesteps': 20000,
+        'start': -10000,
+        'stop': 20000,
+        'plots': ['eref']
+    }
+    config_file = tmp_path / "config.yaml"
+    with config_file.open('w') as f:
+        yaml.dump(config, f)
+
+    result = run_main(config_file)
+    assert result.returncode != 0, "Should fail due to negative start time."
+    assert "Check config.yml. Start and stop must be non-negative." in result.stderr, "Expected error message about neg value."
 
 def test_missing_key(tmp_path):
     """
