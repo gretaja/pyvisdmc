@@ -142,7 +142,7 @@ def test_invalid_dist_for_one_dist(tmp_path):
 
     result = run_main(config_file)
     assert result.returncode != 0, "Should fail because dist has invalid length."
-    assert "For 'one_dist' plot, 'dist' must be provided and contain two atom indices." in result.stderr
+    assert "For 'one_dist' plot, provide argument 'dist' and make sure it contains two atom indices." in result.stderr
 
 def test_one_shot_known_values(tmp_path):
     """
@@ -154,7 +154,7 @@ def test_one_shot_known_values(tmp_path):
         'molecule': 'h5o3',
         'sim_num': 0,
         'walkers': 5000,
-        'timesteps': 5000,
+        'timesteps': 20000,
         'start': 1000,
         'stop': 2000,
         'plots': ['eref'],
@@ -166,7 +166,7 @@ def test_one_shot_known_values(tmp_path):
     result = run_main(config_file)
     assert result.returncode == 0, "Expected success with known-good minimal config."
     assert "Molecule: h5o3" in result.stdout
-    assert "Analyzing 5000 walkers over 5000 timesteps..." in result.stdout
+    assert "Analyzing 5000 walkers over 20000 timesteps..." in result.stdout
     assert "Eref plot saved as h5o3_sim_0_zpe.png" in result.stdout
 
 def test_one_shot_different_molecule(tmp_path):
@@ -178,7 +178,7 @@ def test_one_shot_different_molecule(tmp_path):
         'molecule': 'h2o',
         'sim_num': 0,
         'walkers': 5000,
-        'timesteps': 5000,
+        'timesteps': 20000,
         'start': 0,
         'stop': 5000,
         'plots': ['two_d_dist'],
@@ -191,7 +191,7 @@ def test_one_shot_different_molecule(tmp_path):
     result = run_main(config_file)
     assert result.returncode == 0, "Expected success with two_d_dist."
     assert "Molecule: h2o" in result.stdout
-    assert "Analyzing 5000 walkers over 10000 timesteps..." in result.stdout
+    assert "Analyzing 5000 walkers over 20000 timesteps..." in result.stdout
     assert "two_d_dist plot saved as h2o_sim_0_2d.png" in result.stdout
     
 def test_pattern_multiple_runs(tmp_path):
@@ -219,6 +219,6 @@ def test_pattern_multiple_runs(tmp_path):
 
         result = run_main(config_file)
         assert result.returncode == 0, f"Expected success with stop={stop_val}"
-        assert "Analyzing 5000 walkers over 10000 timesteps..." in result.stdout
+        assert "Analyzing 5000 walkers over 20000 timesteps..." in result.stdout
         assert "No plots specified. Exiting successfully..." in result.stdout
 
