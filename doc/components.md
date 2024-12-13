@@ -1,4 +1,4 @@
-# **Defining Components for the Project**
+# **List of Components**
 
 ## **Data Source (PyVibDMC Output File)**
 
